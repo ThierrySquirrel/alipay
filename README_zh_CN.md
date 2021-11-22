@@ -91,7 +91,7 @@
         <dependency>
             <groupId>com.github.thierrysquirrel</groupId>
             <artifactId>alipay</artifactId>
-            <version>1.3.0.8-RELEASE</version>
+            <version>1.3.0.9-RELEASE</version>
         </dependency>
 ```       
 
