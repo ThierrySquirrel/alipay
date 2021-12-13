@@ -106,7 +106,7 @@ Support Function：
         <dependency>
             <groupId>com.github.thierrysquirrel</groupId>
             <artifactId>alipay</artifactId>
-            <version>1.3.0.9-RELEASE</version>
+            <version>1.3.1.0-RELEASE</version>
         </dependency>
 ```       
 
