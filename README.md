@@ -237,3 +237,5 @@ public class PayCheck {
 }
 ```
 
+![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470740-45ccfa3d-752b-4002-95dd-826c702e984e.jpeg)  
+
