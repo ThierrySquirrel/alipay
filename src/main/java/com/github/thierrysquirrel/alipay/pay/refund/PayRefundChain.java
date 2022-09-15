@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay.refund;
 
@@ -25,10 +25,10 @@ import lombok.Data;
 /**
  * ClassName: PayRefundChain
  * Description:
- * date: 2019/12/25 18:22
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PayRefundChain {
@@ -49,9 +49,9 @@ public class PayRefundChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String refund() throws AlipayApiException {
-        AlipayTradeRefundRequest refundRequest = new AlipayTradeRefundRequest ();
-        refundRequest.setBizModel (alipayTradeRefundModel);
-        return alipayClient.execute (refundRequest).getBody ();
+        AlipayTradeRefundRequest refundRequest = new AlipayTradeRefundRequest();
+        refundRequest.setBizModel(alipayTradeRefundModel);
+        return alipayClient.execute(refundRequest).getBody();
     }
 
     /**
@@ -64,8 +64,8 @@ public class PayRefundChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String refund(AlipayTradeRefundRequest refundRequest) throws AlipayApiException {
-        refundRequest.setBizModel (alipayTradeRefundModel);
-        return alipayClient.execute (refundRequest).getBody ();
+        refundRequest.setBizModel(alipayTradeRefundModel);
+        return alipayClient.execute(refundRequest).getBody();
     }
 
 }

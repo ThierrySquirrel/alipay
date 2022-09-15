@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.factory;
 
@@ -26,11 +26,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * ClassName: PayCheckFactory
- * Description:
- * date: 2019/12/25 19:29
+ * Description: Document Address <a href="https://opensupport.alipay.com/support/FAQ/794a7ccd-0ba9-4d9d-83a3-f43f3bc82ba7">Document Address</a>
+ * 文档地址: <a href="https://opensupport.alipay.com/support/FAQ/794a7ccd-0ba9-4d9d-83a3-f43f3bc82ba7">文档地址</a>
+ * <p>
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 public class PayCheckFactory {
     private PayCheckFactory() {
@@ -38,18 +40,18 @@ public class PayCheckFactory {
 
     /**
      * Call This Method Before Using {@linkplain #check(Map, String)}
-     * Response Parameter Document Address https://docs.open.alipay.com/api_1/alipay.trade.page.pay/
+     * Response Parameter Document Address https://opendocs.alipay.com/open/270/105902?pathHash=d5cd617e
      * <p>
      * 使用 {@linkplain #check(Map, String)} 之前,请先调用此方法
-     * 响应参数,文档地址 https://docs.open.alipay.com/api_1/alipay.trade.page.pay/
+     * 响应参数,文档地址 https://opendocs.alipay.com/open/270/105902?pathHash=d5cd617e
      *
      * @param parameterMap Feedback From AliPay: For Example HttpServletRequest request.getParameterMap()
      *                     支付宝的反馈信息:例如 HttpServletRequest request.getParameterMap()
      * @return Map
      */
     public static Map<String, String> reload(Map<String, String[]> parameterMap) {
-        Map<String, String> map = new ConcurrentHashMap<> (PayCheckFactoryContainer.MAP_DEFAULT_SIZE);
-        parameterMap.forEach ((name, values) -> map.put (name, String.join (PayCheckFactoryContainer.RELOAD_JOIN, values)));
+        Map<String, String> map = new ConcurrentHashMap<>(PayCheckFactoryContainer.MAP_DEFAULT_SIZE);
+        parameterMap.forEach((name, values) -> map.put(name, String.join(PayCheckFactoryContainer.RELOAD_JOIN, values)));
         return map;
     }
 
@@ -88,8 +90,8 @@ public class PayCheckFactory {
      * @throws AlipayApiException AlipayApiException
      */
     public static boolean check(Map<String, String> reloadMap, String publicKey) throws AlipayApiException {
-        return AlipaySignature.rsaCheckV1 (reloadMap, publicKey,
-                PayClientConstant.PAY_CHARSET.getValue (),
-                PayClientConstant.PAY_SIGN_TYPE.getValue ());
+        return AlipaySignature.rsaCheckV1(reloadMap, publicKey,
+                PayClientConstant.PAY_CHARSET.getValue(),
+                PayClientConstant.PAY_SIGN_TYPE.getValue());
     }
 }

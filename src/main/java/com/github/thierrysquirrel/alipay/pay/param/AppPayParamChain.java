@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay.param;
 
@@ -20,17 +20,21 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.domain.ExtUserInfo;
 import com.alipay.api.domain.ExtendParams;
+import com.alipay.api.domain.GoodsDetail;
 import com.github.thierrysquirrel.alipay.pay.AppPayChain;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * ClassName: AppPayParamChain
- * Description: Document Address https://docs.open.alipay.com/204/105465/
- * 文档地址 https://docs.open.alipay.com/204/105465/
- * date: 2019/12/24 17:46
+ * Description: <a href="https://opendocs.alipay.com/open/cd12c885_alipay.trade.app.pay?scene=20&pathHash=ab686e33">Document Address</a>
+ * 文档地址:<a href="https://opendocs.alipay.com/open/cd12c885_alipay.trade.app.pay?scene=20&pathHash=ab686e33">文档地址</a>
+ * <p>
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class AppPayParamChain {
@@ -50,227 +54,157 @@ public class AppPayParamChain {
      * @return AppPayChain
      */
     public AppPayChain builder() {
-        return new AppPayChain (alipayClient, alipayTradeAppPayModel);
+        return new AppPayChain(alipayClient, alipayTradeAppPayModel);
     }
 
     /**
-     * A Specific Description Of A Transaction.
-     * If There Are Multiple Products,
-     * Please Add Up The Product Description String And Pass It To The Body.
+     * Mandatory
+     * Unique order number on merchant website
      * <p>
-     * 对一笔交易的具体描述信息.如果是多种商品,请将商品描述字符串累加传给body.
-     *
-     * @param body body
-     * @return AppPayParamChain
-     */
-    public AppPayParamChain builderBody(String body) {
-        alipayTradeAppPayModel.setBody (body);
-        return this;
-    }
-
-    /**
-     * !!This Is An Indispensable Parameter
-     * Product Title / Transaction Title / Order Title / Order Keyword, Etc
-     * <p>
-     * !!这是不可缺参数
-     * 商品的标题/交易标题/订单标题/订单关键字等
-     *
-     * @param subject subject
-     * @return AppPayParamChain
-     */
-    public AppPayParamChain builderSubject(String subject) {
-        alipayTradeAppPayModel.setSubject (subject);
-        return this;
-    }
-
-    /**
-     * !!This Is An Indispensable Parameter
-     * Unique Order Number Of Merchant Website
-     * <p>
-     * !!这是不可缺参数
+     * 必选
      * 商户网站唯一订单号
      *
      * @param outTradeNo outTradeNo
      * @return AppPayParamChain
      */
     public AppPayParamChain builderOutTradeNo(String outTradeNo) {
-        alipayTradeAppPayModel.setOutTradeNo (outTradeNo);
+        alipayTradeAppPayModel.setOutTradeNo(outTradeNo);
         return this;
     }
 
     /**
-     * The Latest Payment Time Allowed For This Order.
-     * If Overdue, The Transaction Will Be Closed.
-     * Value Range: 1m-15d. M-minute, H-Hour, D-Day, 1c day
-     * (In The Case Of 1C Day, No Matter When The Transaction Is Created, It Is Closed At 0:00).
-     * This Parameter Value Does Not Accept Decimal Point, Such As 1.5h, Which Can Be Converted To 90m.
-     * Note: If It Is Blank, It Defaults To 15d.
+     * Mandatory
+     * The total amount of the order is in yuan, accurate to two decimal places, with a value range of [0.01100000000], and the amount cannot be 0
      * <p>
-     * 该笔订单允许的最晚付款时间,逾期将关闭交易.
-     * 取值范围：1m～15d.m-分钟,h-小时,d-天,1c-当天
-     * （1c-当天的情况下,无论交易何时创建,都在0点关闭）.
-     * 该参数数值不接受小数点, 如 1.5h,可转换为 90m.
-     * 注：若为空,则默认为15d.
-     *
-     * @param timeoutExpress timeoutExpress
-     * @return AppPayParamChain
-     */
-    public AppPayParamChain builderTimeoutExpress(String timeoutExpress) {
-        alipayTradeAppPayModel.setTimeExpire (timeoutExpress);
-        return this;
-    }
-
-    /**
-     * !!This Is An Indispensable Parameter
-     * Total Order Amount, Unit: Yuan, Accurate To Two Decimal Places, Value Range [0.01100000000]
-     * <p>
-     * !!这是不可缺参数
-     * 订单总金额,单位为元,精确到小数点后两位,取值范围[0.01,100000000]
+     * 必选
+     * 订单总金额，单位为元，精确到小数点后两位，取值范围[0.01,100000000]，金额不能为0
      *
      * @param totalAmount totalAmount
      * @return AppPayParamChain
      */
     public AppPayParamChain builderTotalAmount(String totalAmount) {
-        alipayTradeAppPayModel.setTotalAmount (totalAmount);
+        alipayTradeAppPayModel.setTotalAmount(totalAmount);
         return this;
     }
 
     /**
-     * !!This Is An Indispensable Parameter
-     * Product Code, The Product Code Signed By Merchants And AliPay Is Fixed Value QUICK_MSECURITY_PAY.
+     * Mandatory
+     * Order Title
      * <p>
-     * !!这是不可缺参数
-     * 销售产品码,商家和支付宝签约的产品码,为固定值 QUICK_MSECURITY_PAY
+     * 必选
+     * 订单标题
+     *
+     * @param subject subject
+     * @return AppPayParamChain
+     */
+    public AppPayParamChain builderSubject(String subject) {
+        alipayTradeAppPayModel.setSubject(subject);
+        return this;
+    }
+
+    /**
+     * Sales product code, the product code signed by the merchant and Alipay QUICK_MSECURITY_PAY
+     * <p>
+     * 销售产品码，商家和支付宝签约的产品码 QUICK_MSECURITY_PAY
      *
      * @param productCode productCode
      * @return AppPayParamChain
      */
     public AppPayParamChain builderProductCode(String productCode) {
-        alipayTradeAppPayModel.setProductCode (productCode);
+        alipayTradeAppPayModel.setProductCode(productCode);
         return this;
     }
 
     /**
-     * Commodity Main Type: 0 - Virtual Commodity; 1 - Physical Commodity
-     * Note: The Use Of Huabei Channel Is Not Supported For Virtual Goods
+     * The product list information included in the order is in JSON format. For other details, please refer to the product details GoodsDetail[]
      * <p>
-     * 商品主类型：0—虚拟类商品:1—实物类商品
-     * 注：虚拟类商品不支持使用花呗渠道
+     * 订单包含的商品列表信息，json格式，其它说明详见商品明细说明 GoodsDetail[]
      *
-     * @param goodsType goodsType
+     * @param goodsDetail goodsDetail
      * @return AppPayParamChain
      */
-    public AppPayParamChain builderGoodsType(String goodsType) {
-        alipayTradeAppPayModel.setGoodsType (goodsType);
+    public AppPayParamChain builderGoodsDetail(List<GoodsDetail> goodsDetail) {
+        alipayTradeAppPayModel.setGoodsDetail(goodsDetail);
         return this;
     }
 
     /**
-     * Public Return Parameter. If The Parameter Is Passed At The Time Of Request,
-     * It Will Be Returned To The Merchant.
-     * AliPay Will Return The Original Parameter In Asynchronous Notification.
-     * This Parameter Must Be UrlEncode Before It Can Be Sent To AliPay.
+     * Absolute timeout, format yyyy MM dd HH: mm: ss
      * <p>
-     * 公用回传参数,如果请求时传递了该参数,则返回给商户时会回传该参数.
-     * 支付宝会在异步通知时将该参数原样返回.本参数必须进行 UrlEncode 之后才可以发送给支付宝
+     * 绝对超时时间，格式为yyyy-MM-dd HH:mm:ss
      *
-     * @param passBackParams passBackParams
+     * @param timeoutExpress timeoutExpress
      * @return AppPayParamChain
      */
-    public AppPayParamChain builderPassBackParams(String passBackParams) {
-        alipayTradeAppPayModel.setPassbackParams (passBackParams);
+    public AppPayParamChain builderTimeoutExpress(String timeoutExpress) {
+        alipayTradeAppPayModel.setTimeExpire(timeoutExpress);
         return this;
     }
 
     /**
-     * Preferential Parameters
-     * Note: Only After Consultation With AliPay.
+     * Business Expansion Parameters
      * <p>
-     * 优惠参数
-     * 注：仅与支付宝协商后可用
-     *
-     * @param promoParams promoParams
-     * @return AppPayParamChain
-     */
-    public AppPayParamChain builderPromoParams(String promoParams) {
-        alipayTradeAppPayModel.setPromoParams (promoParams);
-        return this;
-    }
-
-    /**
-     * Business Extension Parameters ,Document Address https://docs.open.alipay.com/204/105465/
-     * <p>
-     * 业务扩展参数,文档地址 https://docs.open.alipay.com/204/105465/
+     * 业务扩展参数
      *
      * @param extendParams extendParams
      * @return AppPayParamChain
      */
     public AppPayParamChain builderExtendParams(ExtendParams extendParams) {
-        alipayTradeAppPayModel.setExtendParams (extendParams);
+        alipayTradeAppPayModel.setExtendParams(extendParams);
         return this;
     }
 
     /**
-     * Available Channels, Users Can Only Pay Within The Specified Channels
-     * Use "," To Separate When There Are Multiple Channels
-     * Note: mutually exclusive with DisablePayChannels,
-     * Document Address https://docs.open.alipay.com/204/105465/
+     * Common return parameters, if passed during the request, will be returned to the merchant. Alipay will only return this parameter as is when returning synchronously (including jumping back to the merchant website) and asynchronously notifying. This parameter can be sent to Alipay only after UrlEncoding.
      * <p>
-     * 可用渠道,用户只能在指定渠道范围内支付
-     * 当有多个渠道时用“,”分隔
-     * 注：与 DisablePayChannels 互斥,
-     * 文档地址 https://docs.open.alipay.com/204/105465/
+     * 公用回传参数，如果请求时传递了该参数，则返回给商户时会回传该参数。支付宝只会在同步返回（包括跳转回商户网站）和异步通知时将该参数原样返回。本参数必须进行UrlEncode之后才可以发送给支付宝。
      *
-     * @param enablePayChannels enablePayChannels
+     * @param passBackParams passBackParams
      * @return AppPayParamChain
      */
-    public AppPayParamChain builderEnablePayChannels(String enablePayChannels) {
-        alipayTradeAppPayModel.setEnablePayChannels (enablePayChannels);
+    public AppPayParamChain builderPassBackParams(String passBackParams) {
+        alipayTradeAppPayModel.setPassbackParams(passBackParams);
         return this;
     }
 
     /**
-     * Disable Channel, User Can't Pay Through Specified Channel
-     * Use "," to Separate When There Are Multiple Channels
-     * Note: Mutually Exclusive With EnablePayChannels,
-     * Document Address https://docs.open.alipay.com/204/105465/
+     * Merchant's original order number, maximum length limit of 32 digits
      * <p>
-     * 禁用渠道,用户不可用指定渠道支付
-     * 当有多个渠道时用“,”分隔
-     * 注：与 EnablePayChannels 互斥,
-     * 文档地址 https://docs.open.alipay.com/204/105465/
+     * 商户原始订单号，最大长度限制32位
      *
-     * @param disablePayChannels disablePayChannels
+     * @param merchantOrderNo merchantOrderNo
      * @return AppPayParamChain
      */
-    public AppPayParamChain builderDisablePayChannels(String disablePayChannels) {
-        alipayTradeAppPayModel.setDisablePayChannels (disablePayChannels);
+    public AppPayParamChain builderMerchantOrderNo(String merchantOrderNo) {
+        alipayTradeAppPayModel.setMerchantOrderNo(merchantOrderNo);
         return this;
     }
 
     /**
-     * Merchant Store Number. This Parameter Is Used In The Request Parameter To Distinguish Stores,
-     * Not Required
-     * 商户门店编号.该参数用于请求参数中以区分各门店,非必传项
-     *
-     * @param storeId storeId
-     * @return AppPayParamChain
-     */
-    public AppPayParamChain builderStoreId(String storeId) {
-        alipayTradeAppPayModel.setStoreId (storeId);
-        return this;
-    }
-
-    /**
-     * External Designated Buyer, Document Address https://docs.open.alipay.com/204/105465/
-     * 外部指定买家,文档地址 https://docs.open.alipay.com/204/105465/
+     * External designated buyer
+     * <p>
+     * 外部指定买家
      *
      * @param extUserInfo extUserInfo
      * @return AppPayParamChain
      */
     public AppPayParamChain builderExtUserInfo(ExtUserInfo extUserInfo) {
-        alipayTradeAppPayModel.setExtUserInfo (extUserInfo);
+        alipayTradeAppPayModel.setExtUserInfo(extUserInfo);
         return this;
     }
+
+    /**
+     * Return parameter options. Merchants customize the information fields and array format that need to be returned for synchronization by passing this parameter.
+     * <p>
+     * 返回参数选项。 商户通过传递该参数来定制同步需要额外返回的信息字段，数组格式。
+     *
+     * @param queryOptions queryOptions
+     * @return AppPayParamChain
+     */
+    public AppPayParamChain builderQueryOptions(List<String> queryOptions) {
+        alipayTradeAppPayModel.setQueryOptions(queryOptions);
+        return this;
+    }
+
 
 }

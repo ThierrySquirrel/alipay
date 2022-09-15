@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay.param;
 
@@ -20,17 +20,20 @@ import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.domain.ExtUserInfo;
 import com.alipay.api.domain.ExtendParams;
+import com.alipay.api.domain.GoodsDetail;
 import com.github.thierrysquirrel.alipay.pay.WapPayChain;
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * ClassName: WapPayParamChain
- * Description: Document Address https://docs.open.alipay.com/203/107090/
- * 文档地址 https://docs.open.alipay.com/203/107090/
- * date: 2019/12/24 19:05
+ * Description: <a href="https://opendocs.alipay.com/open/29ae8cb6_alipay.trade.wap.pay?scene=21&pathHash=1ef587fd">Document Address</a>
+ * 文档地址: <a href="https://opendocs.alipay.com/open/29ae8cb6_alipay.trade.wap.pay?scene=21&pathHash=1ef587fd">文档地址</a>
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class WapPayParamChain {
@@ -50,264 +53,184 @@ public class WapPayParamChain {
      * @return WapPayChain
      */
     public WapPayChain builder() {
-        return new WapPayChain (alipayClient, alipayTradeWapPayModel);
+        return new WapPayChain(alipayClient, alipayTradeWapPayModel);
     }
 
     /**
-     * A Specific Description Of A Transaction.
-     * If There Are Multiple Products,
-     * Please Add Up The Product Description String And Pass It To The Body.
+     * Mandatory
+     * Unique order number on merchant website
      * <p>
-     * 对一笔交易的具体描述信息.如果是多种商品,请将商品描述字符串累加传给body.
-     *
-     * @param body body
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderBody(String body) {
-        alipayTradeWapPayModel.setBody (body);
-        return this;
-    }
-
-    /**
-     * !!This Is An Indispensable Parameter
-     * Product Title / Transaction Title / Order Title / Order Keyword, Etc
-     * <p>
-     * !!这是不可缺参数
-     * 商品的标题/交易标题/订单标题/订单关键字等
-     *
-     * @param subject subject
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderSubject(String subject) {
-        alipayTradeWapPayModel.setSubject (subject);
-        return this;
-    }
-
-    /**
-     * !!This Is An Indispensable Parameter
-     * Unique Order Number Of Merchant Website
-     * <p>
-     * !!这是不可缺参数
+     * 必选
      * 商户网站唯一订单号
      *
      * @param outTradeNo outTradeNo
      * @return AppPayParamChain
      */
     public WapPayParamChain builderOutTradeNo(String outTradeNo) {
-        alipayTradeWapPayModel.setOutTradeNo (outTradeNo);
+        alipayTradeWapPayModel.setOutTradeNo(outTradeNo);
         return this;
     }
 
     /**
-     * The Latest Payment Time Allowed For This Order.
-     * If Overdue, The Transaction Will Be Closed.
-     * Value Range: 1m-15d. M-minute, H-Hour, D-Day, 1c day
-     * (In The Case Of 1C Day, No Matter When The Transaction Is Created, It Is Closed At 0:00).
-     * This Parameter Value Does Not Accept Decimal Point, Such As 1.5h, Which Can Be Converted To 90m.
-     * Note: If It Is Blank, It Defaults To 15d.
+     * Mandatory
+     * The total amount of the order.
+     * The unit is yuan, accurate to two decimal places, with a value range of [0.01100000000].
      * <p>
-     * 该笔订单允许的最晚付款时间,逾期将关闭交易.
-     * 取值范围:1m～15d.m-分钟,h-小时,d-天,1c-当天
-     * （1c-当天的情况下,无论交易何时创建,都在0点关闭）.
-     * 该参数数值不接受小数点, 如 1.5h,可转换为 90m.
-     * 注:若为空,则默认为15d.
-     *
-     * @param timeoutExpress timeoutExpress
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderTimeoutExpress(String timeoutExpress) {
-        alipayTradeWapPayModel.setTimeExpire (timeoutExpress);
-        return this;
-    }
-
-    /**
-     * Absolute Timeout In The Format yyyy-MM-dd HH:mm. Note: 1)
-     * Take AliPay System Time As The Criterion; 2)
-     * If TimeoutExpress Parameters Are Introduced At The Same Time, TimeExpire Is The Criterion.
-     * <p>
-     * 绝对超时时间,格式为yyyy-MM-dd HH:mm. 注:1）以支付宝系统时间为准；2）
-     * 如果和timeoutExpress参数同时传入,以timeExpire为准
-     *
-     * @param timeExpire timeExpire
-     * @return WapPayParamChain
-     */
-    public WapPayParamChain builderTimeExpire(String timeExpire) {
-        alipayTradeWapPayModel.setTimeExpire (timeExpire);
-        return this;
-    }
-
-    /**
-     * !!This Is An Indispensable Parameter
-     * Total Order Amount, Unit: Yuan, Accurate To Two Decimal Places, Value Range [0.01100000000]
-     * <p>
-     * !!这是不可缺参数
-     * 订单总金额,单位为元,精确到小数点后两位,取值范围[0.01,100000000]
+     * 必选
+     * 订单总金额。
+     * 单位为元，精确到小数点后两位，取值范围：[0.01,100000000] 。
      *
      * @param totalAmount totalAmount
      * @return AppPayParamChain
      */
     public WapPayParamChain builderTotalAmount(String totalAmount) {
-        alipayTradeWapPayModel.setTotalAmount (totalAmount);
+        alipayTradeWapPayModel.setTotalAmount(totalAmount);
         return this;
     }
 
     /**
-     * The User Authorization Interface Is Used To Identify The User's Authorization Relationship Note When Obtaining The Relevant Data Of Users.
-     * If It Does Not Belong To The Business Contract Manager Provided by AliPay Business Manager,
-     * The Function Will Not Be Provided Temporarily, And The Parameter Is Invalid.
+     * Mandatory
+     * Order Title
      * <p>
-     * 针对用户授权接口,获取用户相关数据时,
-     * 用于标识用户授权关系注:若不属于支付宝业务经理提供签约服务的商户,
-     * 暂不对外提供该功能,该参数使用无效
+     * 必选
+     * 订单标题
      *
-     * @param authToken authToken
-     * @return WapPayParamChain
+     * @param subject subject
+     * @return AppPayParamChain
      */
-    public WapPayParamChain builderAuthToken(String authToken) {
-        alipayTradeWapPayModel.setAuthToken (authToken);
+    public WapPayParamChain builderSubject(String subject) {
+        alipayTradeWapPayModel.setSubject(subject);
         return this;
     }
 
     /**
-     * !!This Is An Indispensable Parameter
-     * Product Code, The Product Code Signed By AliPay And Merchants.
-     * Please Fill In The Fixed Value For This Product:QUICK_WAP_WAY
+     * Mandatory
+     * The sales product code of the order title, and the product code signed by the merchant and Alipay. Mobile website payment is: QUICK-WAP-WAY
      * <p>
-     * !!这是不可缺参数
-     * 销售产品码,商家和支付宝签约的产品码.该产品请填写固定值:QUICK_WAP_WAY
+     * 必选
+     * 销售产品码，商家和支付宝签约的产品码。手机网站支付为：QUICK_WAP_WAY
      *
      * @param productCode productCode
      * @return WapPayParamChain
      */
     public WapPayParamChain builderProductCode(String productCode) {
-        alipayTradeWapPayModel.setProductCode (productCode);
+        alipayTradeWapPayModel.setProductCode(productCode);
         return this;
     }
 
     /**
-     * Commodity Main Type: 0 - Virtual Commodity; 1 - Physical Commodity
-     * Note: The Use Of Huabei Channel Is Not Supported For Virtual Goods
+     * For the user authorization interface, it is used to identify the user authorization relationship when obtaining user related data
      * <p>
-     * 商品主类型:0—虚拟类商品；1—实物类商品
-     * 注:虚拟类商品不支持使用花呗渠道
+     * 针对用户授权接口，获取用户相关数据时，用于标识用户授权关系
      *
-     * @param goodsType goodsType
-     * @return AppPayParamChain
+     * @param authToken authToken
+     * @return WapPayParamChain
      */
-    public WapPayParamChain builderGoodsType(String goodsType) {
-        alipayTradeWapPayModel.setGoodsType (goodsType);
+    public WapPayParamChain builderAuthToken(String authToken) {
+        alipayTradeWapPayModel.setAuthToken(authToken);
         return this;
     }
 
     /**
-     * Public Return Parameter. If The Parameter Is Passed At The Time Of Request,
-     * It Will Be Returned To The Merchant.
-     * AliPay Will Return The Original Parameter In Asynchronous Notification.
-     * This Parameter Must Be UrlEncode Before It Can Be Sent To AliPay.
+     * User exits midway through payment and returns to the merchant's website address
      * <p>
-     * 公用回传参数,如果请求时传递了该参数,则返回给商户时会回传该参数.
-     * 支付宝会在异步通知时将该参数原样返回.本参数必须进行 UrlEncode 之后才可以发送给支付宝
-     *
-     * @param passBackParams passBackParams
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderPassBackParams(String passBackParams) {
-        alipayTradeWapPayModel.setPassbackParams (passBackParams);
-        return this;
-    }
-
-    /**
-     * Preferential Parameters
-     * Note: Only After Consultation With AliPay.
-     * <p>
-     * 优惠参数
-     * 注:仅与支付宝协商后可用
-     *
-     * @param promoParams promoParams
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderPromoParams(String promoParams) {
-        alipayTradeWapPayModel.setPromoParams (promoParams);
-        return this;
-    }
-
-    /**
-     * Business Extension Parameters ,Document Address https://docs.open.alipay.com/203/107090/
-     * <p>
-     * 业务扩展参数,文档地址 https://docs.open.alipay.com/203/107090/
-     *
-     * @param extendParams extendParams
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderExtendParams(ExtendParams extendParams) {
-        alipayTradeWapPayModel.setExtendParams (extendParams);
-        return this;
-    }
-
-    /**
-     * Available Channels, Users Can Only Pay Within The Specified Channels
-     * Use "," To Separate When There Are Multiple Channels
-     * Note: mutually exclusive with DisablePayChannels,
-     * Document Address https://docs.open.alipay.com/203/107090/
-     * <p>
-     * 可用渠道,用户只能在指定渠道范围内支付
-     * 当有多个渠道时用“,”分隔
-     * 注:与 DisablePayChannels 互斥,
-     * 文档地址 https://docs.open.alipay.com/203/107090/
-     *
-     * @param enablePayChannels enablePayChannels
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderEnablePayChannels(String enablePayChannels) {
-        alipayTradeWapPayModel.setEnablePayChannels (enablePayChannels);
-        return this;
-    }
-
-    /**
-     * Disable Channel, User Can't Pay Through Specified Channel
-     * Use "," to Separate When There Are Multiple Channels
-     * Note: Mutually Exclusive With EnablePayChannels,
-     * Document Address https://docs.open.alipay.com/203/107090/
-     * <p>
-     * 禁用渠道,用户不可用指定渠道支付
-     * 当有多个渠道时用“,”分隔
-     * 注:与 EnablePayChannels 互斥,
-     * 文档地址 https://docs.open.alipay.com/203/107090/
-     *
-     * @param disablePayChannels disablePayChannels
-     * @return AppPayParamChain
-     */
-    public WapPayParamChain builderDisablePayChannels(String disablePayChannels) {
-        alipayTradeWapPayModel.setDisablePayChannels (disablePayChannels);
-        return this;
-    }
-
-    /**
-     * After Adding This Parameter, A Return Button Will Appear At The H5 Payment And Cash Register,
-     * Which Can Be Used For Users To Withdraw From Payment And Return To The Merchant Website Address Specified By This parameter.
-     * Note: This Parameter Does Not Take Effect On The Jump Of AliPay Wallet Standard Cash Register.
-     * <p>
-     * 添加该参数后在h5支付收银台会出现返回按钮,
-     * 可用于用户付款中途退出并返回到该参数指定的商户网站地址.
-     * 注:该参数对支付宝钱包标准收银台下的跳转不生效
+     * 用户付款中途退出返回商户网站的地址
      *
      * @param quitUrl quitUrl
      * @return WapPayParamChain
      */
     public WapPayParamChain builderQuitUrl(String quitUrl) {
-        alipayTradeWapPayModel.setQuitUrl (quitUrl);
+        alipayTradeWapPayModel.setQuitUrl(quitUrl);
         return this;
     }
 
     /**
-     * External Designated Buyer, Document Address https://docs.open.alipay.com/203/107090/
-     * 外部指定买家,文档地址 https://docs.open.alipay.com/203/107090/
+     * The product list information included in the order is in JSON format. For other details, please refer to the product details
+     * <p>
+     * 订单包含的商品列表信息，json格式，其它说明详见商品明细说明
+     *
+     * @param goodsDetail goodsDetail
+     * @return AppPayParamChain
+     */
+    public WapPayParamChain builderGoodsType(List<GoodsDetail> goodsDetail) {
+        alipayTradeWapPayModel.setGoodsDetail(goodsDetail);
+        return this;
+    }
+
+    /**
+     * Absolute timeout, in the format yyyy MM dd HH: mm: ss. Time limit range: 1m~15d
+     * <p>
+     * 绝对超时时间，格式为yyyy-MM-dd HH:mm:ss。超时时间范围：1m~15d
+     *
+     * @param timeExpire timeExpire
+     * @return WapPayParamChain
+     */
+    public WapPayParamChain builderTimeExpire(String timeExpire) {
+        alipayTradeWapPayModel.setTimeExpire(timeExpire);
+        return this;
+    }
+
+    /**
+     * Business Expansion Parameters
+     * <p>
+     * 业务扩展参数
+     *
+     * @param extendParams extendParams
+     * @return AppPayParamChain
+     */
+    public WapPayParamChain builderExtendParams(ExtendParams extendParams) {
+        alipayTradeWapPayModel.setExtendParams(extendParams);
+        return this;
+    }
+
+    /**
+     * The specific value of the business information transferred by the merchant should be agreed with Alipay. It should be used in the scenario of direct transmission of parameters such as security and marketing, and the format should be json
+     * <p>
+     * 商户传入业务信息，具体值要和支付宝约定，应用于安全，营销等参数直传场景，格式为json格式
+     *
+     * @param businessParams businessParams
+     * @return WapPayParamChain
+     */
+    public WapPayParamChain builderBusinessParams(String businessParams) {
+        alipayTradeWapPayModel.setBusinessParams(businessParams);
+        return this;
+    }
+
+    /**
+     * Common return parameters, if passed during the request, will be returned to the merchant. Alipay will only return this parameter as is when returning synchronously (including jumping back to the merchant website) and asynchronously notifying. This parameter can be sent to Alipay only after UrlEncoding
+     * <p>
+     * 公用回传参数，如果请求时传递了该参数，则返回给商户时会回传该参数。支付宝只会在同步返回（包括跳转回商户网站）和异步通知时将该参数原样返回。本参数必须进行UrlEncode之后才可以发送给支付宝
+     *
+     * @param passBackParams passBackParams
+     * @return AppPayParamChain
+     */
+    public WapPayParamChain builderPassBackParams(String passBackParams) {
+        alipayTradeWapPayModel.setPassbackParams(passBackParams);
+        return this;
+    }
+
+    /**
+     * Merchant's original order number, maximum length limit of 32 digits
+     * <p>
+     * 商户原始订单号，最大长度限制32位
+     *
+     * @param merchantOrderNo merchantOrderNo
+     * @return WapPay ParamChain
+     */
+    public WapPayParamChain builderMerchantOrderNo(String merchantOrderNo) {
+        alipayTradeWapPayModel.setMerchantOrderNo(merchantOrderNo);
+        return this;
+    }
+
+    /**
+     * External designated buyer
+     * 外部指定买家
      *
      * @param extUserInfo extUserInfo
      * @return AppPayParamChain
      */
     public WapPayParamChain builderExtUserInfo(ExtUserInfo extUserInfo) {
-        alipayTradeWapPayModel.setExtUserInfo (extUserInfo);
+        alipayTradeWapPayModel.setExtUserInfo(extUserInfo);
         return this;
     }
 }

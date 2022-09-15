@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay.download;
 
@@ -25,10 +25,10 @@ import lombok.Data;
 /**
  * ClassName: PayDownloadQueryChain
  * Description:
- * date: 2019/12/25 19:24
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PayDownloadQueryChain {
@@ -49,9 +49,9 @@ public class PayDownloadQueryChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String downloadQuery() throws AlipayApiException {
-        AlipayDataDataserviceBillDownloadurlQueryRequest queryRequest = new AlipayDataDataserviceBillDownloadurlQueryRequest ();
-        queryRequest.setBizModel (alipayDataDataserviceBillDownloadurlQueryModel);
-        return alipayClient.execute (queryRequest).getBillDownloadUrl ();
+        AlipayDataDataserviceBillDownloadurlQueryRequest queryRequest = new AlipayDataDataserviceBillDownloadurlQueryRequest();
+        queryRequest.setBizModel(alipayDataDataserviceBillDownloadurlQueryModel);
+        return alipayClient.execute(queryRequest).getBillDownloadUrl();
     }
 
     /**
@@ -64,8 +64,8 @@ public class PayDownloadQueryChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String downloadQuery(AlipayDataDataserviceBillDownloadurlQueryRequest queryRequest) throws AlipayApiException {
-        queryRequest.setBizModel (alipayDataDataserviceBillDownloadurlQueryModel);
-        return alipayClient.execute (queryRequest).getBillDownloadUrl ();
+        queryRequest.setBizModel(alipayDataDataserviceBillDownloadurlQueryModel);
+        return alipayClient.execute(queryRequest).getBillDownloadUrl();
     }
 
 }

@@ -45,7 +45,7 @@
   提供退款、清结算、对账等配套服务.   
 
 # 交易查询：
-* [统一收单线下交易查询](https://docs.open.alipay.com/api_1/alipay.trade.query)    
+* [统一收单线下交易查询](https://opendocs.alipay.com/open/82ea786a_alipay.trade.query?scene=23&pathHash=0745ecea)    
  该接口提供所有支付宝支付订单的查询,商户可以通过该接口主动查询订单状态,完成下一步的业务逻辑.  
  需要调用查询接口的情况： 当商户后台、网络、服务器等出现异常,商户系统最终未接收到支付通知:   
  调用支付接口后,返回系统错误或未知交易状态情况:   
@@ -53,12 +53,12 @@
  调用alipay.trade.cancel之前,需确认支付状态:   
 
 # 交易关闭：
-* [统一收单交易关闭接口](https://docs.open.alipay.com/api_1/alipay.trade.close)  
+* [统一收单交易关闭接口](https://opendocs.alipay.com/open/ce0b4954_alipay.trade.close?scene=common&pathHash=7b0fdae1)  
   用于交易创建后,用户在一定时间内未进行支付,  
   可调用该接口直接将未付款的交易进行关闭.  
 
 # 交易退款：
-* [统一收单交易退款接口](https://docs.open.alipay.com/api_1/alipay.trade.refund)  
+* [统一收单交易退款接口](https://opendocs.alipay.com/open/4b7cc5db_alipay.trade.refund?scene=common&pathHash=d98b006d)  
   当交易发生之后一段时间内,由于买家或者卖家的原因需要退款时,  
   卖家可以通过退款接口将支付款退还给买家,  
   支付宝将在收到退款请求并且验证成功之后,  
@@ -70,7 +70,7 @@
   总退款金额不能超过用户实际支付金额  
   
 # 交易退款查询：
-* [统一收单交易退款查询](https://docs.open.alipay.com/api_1/alipay.trade.fastpay.refund.query)  
+* [统一收单交易退款查询](https://opendocs.alipay.com/open/7be83133_alipay.trade.fastpay.refund.query?scene=common&pathHash=7cf4fed5)  
   商户可使用该接口查询自已通过alipay.trade.refund或alipay.trade.refund.apply提交的退款请求是否执行成功.   
   该接口的返回码10000,仅代表本次查询操作成功,不代表退款成功.  
   如果该接口返回了查询数据,  
@@ -79,7 +79,7 @@
   重试时请务必保证退款请求号一致.     
   
 # 查询账单下载地址：
-* [查询对账单下载地址](https://docs.open.alipay.com/api_15/alipay.data.dataservice.bill.downloadurl.query)  
+* [查询对账单下载地址](https://opendocs.alipay.com/open/3c9f1bcf_alipay.data.dataservice.bill.downloadurl.query?scene=common&pathHash=97357e8b)  
   为方便商户快速查账,支持商户通过本接口获取商户离线账单下载地址  
   
 # 交易验签：
@@ -94,7 +94,7 @@
         <dependency>
             <groupId>com.github.thierrysquirrel</groupId>
             <artifactId>alipay</artifactId>
-            <version>1.3.1.2-RELEASE</version>
+            <version>1.4.0.0-RELEASE</version>
         </dependency>
 ```       
 
@@ -102,27 +102,27 @@
 
 ```java
 public class AppPay {
-  	public String appPay() throws AlipayApiException {
-  		return PayRootChainFactory
-  				.createdPayChain("appId", "privateKey", "publicKey")
-  				.appPay("subject", "outTradeNo", "totalAmount")
-  				.builder()
-  				.pay("notifyUrl");
-  	}
+  public String appPay() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .appPay("outTradeNo", "totalAmount", "subject")
+            .builder()
+            .pay("notifyUrl");
   }
+}
 ```  
 
 # 手机网站支付：  
 
 ```java
 public class WapPay {
-	public String wapPay() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.wapPay("subject","outTradeNo","totalAmount")
-				.builder()
-				.pay("returnUrl","notifyUrl");
-	}
+  public String wapPay() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .wapPay("outTradeNo", "totalAmount", "subject")
+            .builder()
+            .pay("returnUrl", "notifyUrl");
+  }
 }
 ```  
 
@@ -130,13 +130,13 @@ public class WapPay {
 
 ```java
 public class PagePay {
-	public String pagePay() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.pagePay("subject","outTradeNo","totalAmount")
-				.builder()
-				.pay("returnUrl","notifyUrl");
-	}
+  public String pagePay() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId","privateKey","publicKey")
+            .pagePay("outTradeNo","totalAmount","subject")
+            .builder()
+            .pay("returnUrl","notifyUrl");
+  }
 }
 ```
 
@@ -144,13 +144,13 @@ public class PagePay {
 
 ```java
 public class PayQuery {
-	public String payQuery() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.queryPay("outTradeNo","tradeNo")
-				.builder()
-				.query();
-	}
+  public String payQuery() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .queryPay("outTradeNo", "tradeNo")
+            .builder()
+            .query();
+  }
 }
 ```
 
@@ -158,13 +158,13 @@ public class PayQuery {
 
 ```java
 public class PayClose {
-	public String payClose() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.closePay("outTradeNo","tradeNo")
-				.builder()
-				.close();
-	}
+  public String payClose() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .closePay("tradeNo", "outTradeNo")
+            .builder()
+            .close();
+  }
 }
 ```
 
@@ -172,13 +172,13 @@ public class PayClose {
 
 ```java
 public class PayRefund {
-	public String payRefund() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.refundPay("outTradeNo","tradeNo","refundAmount")
-				.builder()
-				.refund();
-	}
+  public String payRefund() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .refundPay("refundAmount", "outTradeNo", "tradeNo")
+            .builder()
+            .refund();
+  }
 }
 ```
 
@@ -186,13 +186,13 @@ public class PayRefund {
 
 ```java
 public class PayRefundQuery {
-	public String payRefundQuery() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.refundQueryPay("outTradeNo","tradeNo","outRequestNo")
-				.builder()
-				.refundQuery();
-	}
+  public String payRefundQuery() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .refundQueryPay("outRequestNo", "tradeNo", "outTradeNo")
+            .builder()
+            .refundQuery();
+  }
 }
 ```
 
@@ -200,13 +200,13 @@ public class PayRefundQuery {
 
 ```java
 public class PayDownloadQuery {
-	public String payDownloadQuery() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.downloadQueryPay("billType","billDate")
-				.builder()
-				.downloadQuery();
-	}
+  public String payDownloadQuery() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId","privateKey","publicKey")
+            .downloadQueryPay("billType","billDate")
+            .builder()
+            .downloadQuery();
+  }
 }
 ```
 
@@ -222,5 +222,6 @@ public class PayCheck {
 }
 ```
 
-![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470756-bcc29dcd-3d89-41f6-80d7-1ebecb867d2b.jpeg)  
+![Russian flag](https://user-images.githubusercontent.com/49895274/190371499-a9a2f46b-4604-4aed-9354-697c24040414.png)
+
 

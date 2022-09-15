@@ -51,7 +51,7 @@ Support Function：
   Provide Refund, Settlement, Reconciliation And Other Supporting Services.       
 
 # Transaction Query：
-* [Unified Single Line Transaction Inquiry](https://docs.open.alipay.com/api_1/alipay.trade.query)    
+* [Unified Single Line Transaction Inquiry](https://opendocs.alipay.com/open/82ea786a_alipay.trade.query?scene=23&pathHash=0745ecea)    
  The Interface Provides All AliPay Payment Orders Inquiries, Merchants Can Actively Query The Order Status Through This Interface,      
  And Complete The Next Business Logic.     
  Need To Call Query Interface: When The Merchant Background, Network,     
@@ -62,13 +62,13 @@ Support Function：
  Before Calling alipay.trade.cancel, You Need To Confirm The Payment Status:       
 
 # Transaction Closed：
-* [Unified Receipt Transaction Closing Interface](https://docs.open.alipay.com/api_1/alipay.trade.close)  
+* [Unified Receipt Transaction Closing Interface](https://opendocs.alipay.com/open/ce0b4954_alipay.trade.close?scene=common&pathHash=7b0fdae1)  
   After The Transaction Is Created,   
   The User Fails To Pay Within A Certain Period Of Time,    
   This Interface Can Be Called To Close The Unpaid Transactions Directly.    
 
 # Transaction Refund：
-* [Unified Receipt Transaction Refund Interface](https://docs.open.alipay.com/api_1/alipay.trade.refund)  
+* [Unified Receipt Transaction Refund Interface](https://opendocs.alipay.com/open/4b7cc5db_alipay.trade.refund?scene=common&pathHash=d98b006d)  
   When A Refund Is Required Due To The Buyer Or The Seller For A Period Of Time After The Transaction,    
   The Seller Can Return The Payment To The Buyer Through The Refund Interface,    
   AliPay Will Receive A Refund Request And Verify The Success,    
@@ -81,7 +81,7 @@ Support Function：
   The Total Refund Amount Cannot Exceed The User's Actual Payment Amount     
   
 # Transaction Refund Query：
-* [Unified Receipt Transaction Refund Query](https://docs.open.alipay.com/api_1/alipay.trade.fastpay.refund.query)  
+* [Unified Receipt Transaction Refund Query](https://opendocs.alipay.com/open/7be83133_alipay.trade.fastpay.refund.query?scene=common&pathHash=7cf4fed5)  
   The Merchant Can Use This Interface To Query Whether The Refund Request Submitted By Itself Through alipay.trade.refund     
   or alipay.trade.refund.apply Is Executed Successfully.     
   The Return Code 10000 Of This Interface Only Represents The Success Of This Query Operation, Not The Success Of Refund.      
@@ -92,7 +92,7 @@ Support Function：
   Please Make Sure That The Refund Request Number Is The Same When You Try Again.       
   
 # Query Bill Download Address：
-* [Query The Download Address Of Statement](https://docs.open.alipay.com/api_15/alipay.data.dataservice.bill.downloadurl.query)  
+* [Query The Download Address Of Statement](https://opendocs.alipay.com/open/3c9f1bcf_alipay.data.dataservice.bill.downloadurl.query?scene=common&pathHash=97357e8b)  
   In Order To Facilitate The Merchant's Quick Account Checking,       
   The Merchant Is Supported To Obtain The Offline Bill Download Address Of The Merchant Through This Interface         
   
@@ -109,7 +109,7 @@ Support Function：
         <dependency>
             <groupId>com.github.thierrysquirrel</groupId>
             <artifactId>alipay</artifactId>
-            <version>1.3.1.2-RELEASE</version>
+            <version>1.4.0.0-RELEASE</version>
         </dependency>
 ```       
 
@@ -117,27 +117,27 @@ Support Function：
 
 ```java
 public class AppPay {
-  	public String appPay() throws AlipayApiException {
-  		return PayRootChainFactory
-  				.createdPayChain("appId", "privateKey", "publicKey")
-  				.appPay("subject", "outTradeNo", "totalAmount")
-  				.builder()
-  				.pay("notifyUrl");
-  	}
+  public String appPay() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .appPay("outTradeNo", "totalAmount", "subject")
+            .builder()
+            .pay("notifyUrl");
   }
+}
 ```  
 
 # Mobile Website Payment：  
 
 ```java
 public class WapPay {
-	public String wapPay() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.wapPay("subject","outTradeNo","totalAmount")
-				.builder()
-				.pay("returnUrl","notifyUrl");
-	}
+  public String wapPay() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .wapPay("outTradeNo", "totalAmount", "subject")
+            .builder()
+            .pay("returnUrl", "notifyUrl");
+  }
 }
 ```  
 
@@ -145,13 +145,13 @@ public class WapPay {
 
 ```java
 public class PagePay {
-	public String pagePay() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.pagePay("subject","outTradeNo","totalAmount")
-				.builder()
-				.pay("returnUrl","notifyUrl");
-	}
+  public String pagePay() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId","privateKey","publicKey")
+            .pagePay("outTradeNo","totalAmount","subject")
+            .builder()
+            .pay("returnUrl","notifyUrl");
+  }
 }
 ```
 
@@ -159,13 +159,13 @@ public class PagePay {
 
 ```java
 public class PayQuery {
-	public String payQuery() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.queryPay("outTradeNo","tradeNo")
-				.builder()
-				.query();
-	}
+  public String payQuery() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .queryPay("outTradeNo", "tradeNo")
+            .builder()
+            .query();
+  }
 }
 ```
 
@@ -173,13 +173,13 @@ public class PayQuery {
 
 ```java
 public class PayClose {
-	public String payClose() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.closePay("outTradeNo","tradeNo")
-				.builder()
-				.close();
-	}
+  public String payClose() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .closePay("tradeNo", "outTradeNo")
+            .builder()
+            .close();
+  }
 }
 ```
 
@@ -187,13 +187,13 @@ public class PayClose {
 
 ```java
 public class PayRefund {
-	public String payRefund() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.refundPay("outTradeNo","tradeNo","refundAmount")
-				.builder()
-				.refund();
-	}
+  public String payRefund() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .refundPay("refundAmount", "outTradeNo", "tradeNo")
+            .builder()
+            .refund();
+  }
 }
 ```
 
@@ -201,13 +201,13 @@ public class PayRefund {
 
 ```java
 public class PayRefundQuery {
-	public String payRefundQuery() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.refundQueryPay("outTradeNo","tradeNo","outRequestNo")
-				.builder()
-				.refundQuery();
-	}
+  public String payRefundQuery() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId", "privateKey", "publicKey")
+            .refundQueryPay("outRequestNo", "tradeNo", "outTradeNo")
+            .builder()
+            .refundQuery();
+  }
 }
 ```
 
@@ -215,13 +215,13 @@ public class PayRefundQuery {
 
 ```java
 public class PayDownloadQuery {
-	public String payDownloadQuery() throws AlipayApiException {
-		return PayRootChainFactory
-				.createdPayChain("appId","privateKey","publicKey")
-				.downloadQueryPay("billType","billDate")
-				.builder()
-				.downloadQuery();
-	}
+  public String payDownloadQuery() throws AlipayApiException {
+    return PayRootChainFactory
+            .createdPayChain("appId","privateKey","publicKey")
+            .downloadQueryPay("billType","billDate")
+            .builder()
+            .downloadQuery();
+  }
 }
 ```
 

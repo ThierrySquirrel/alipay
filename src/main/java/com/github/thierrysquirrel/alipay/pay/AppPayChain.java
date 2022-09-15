@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay;
 
@@ -25,10 +25,10 @@ import lombok.Data;
 /**
  * ClassName: AppPayChain
  * Description:
- * date: 2019/12/24 18:52
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class AppPayChain {
@@ -50,10 +50,10 @@ public class AppPayChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String pay(String notifyUrl) throws AlipayApiException {
-        AlipayTradeAppPayRequest payRequest = new AlipayTradeAppPayRequest ();
-        payRequest.setNotifyUrl (notifyUrl);
-        payRequest.setBizModel (alipayTradeAppPayModel);
-        return alipayClient.sdkExecute (payRequest).getBody ();
+        AlipayTradeAppPayRequest payRequest = new AlipayTradeAppPayRequest();
+        payRequest.setNotifyUrl(notifyUrl);
+        payRequest.setBizModel(alipayTradeAppPayModel);
+        return alipayClient.sdkExecute(payRequest).getBody();
     }
 
     /**
@@ -66,7 +66,7 @@ public class AppPayChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String pay(AlipayTradeAppPayRequest payRequest) throws AlipayApiException {
-        payRequest.setBizModel (alipayTradeAppPayModel);
-        return alipayClient.sdkExecute (payRequest).getBody ();
+        payRequest.setBizModel(alipayTradeAppPayModel);
+        return alipayClient.sdkExecute(payRequest).getBody();
     }
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay.close;
 
@@ -25,10 +25,10 @@ import lombok.Data;
 /**
  * ClassName: PayCloseChain
  * Description:
- * date: 2019/12/25 16:30
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PayCloseChain {
@@ -49,9 +49,9 @@ public class PayCloseChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String close() throws AlipayApiException {
-        AlipayTradeCloseRequest closeRequest = new AlipayTradeCloseRequest ();
-        closeRequest.setBizModel (alipayTradeCloseModel);
-        return alipayClient.execute (closeRequest).getBody ();
+        AlipayTradeCloseRequest closeRequest = new AlipayTradeCloseRequest();
+        closeRequest.setBizModel(alipayTradeCloseModel);
+        return alipayClient.execute(closeRequest).getBody();
     }
 
     /**
@@ -64,6 +64,6 @@ public class PayCloseChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String close(AlipayTradeCloseRequest closeRequest) throws AlipayApiException {
-        return alipayClient.execute (closeRequest).getBody ();
+        return alipayClient.execute(closeRequest).getBody();
     }
 }

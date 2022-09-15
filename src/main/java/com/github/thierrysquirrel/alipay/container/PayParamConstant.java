@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,18 +12,21 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.container;
+
+import lombok.Getter;
 
 /**
  * ClassName: PayParamConstant
  * Description:
- * date: 2019/12/24 17:51
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
+@Getter
 public enum PayParamConstant {
     /**
      * Product Code, Product Code Signed By AliPay And Merchants,
@@ -32,7 +35,7 @@ public enum PayParamConstant {
      * 销售产品码，商家和支付宝签约的产品码,
      * 为固定值 QUICK_MSECURITY_PAY
      */
-    APP_PAY_PARAM_PRODUCT_CODE ("QUICK_MSECURITY_PAY"),
+    APP_PAY_PARAM_PRODUCT_CODE("QUICK_MSECURITY_PAY"),
     /**
      * Product Code, The Product Code Signed By AliPay And Merchants.
      * Please Fill In The Fixed Value Of The Product: QUICK_WAP_WAY
@@ -40,7 +43,7 @@ public enum PayParamConstant {
      * 销售产品码，商家和支付宝签约的产品码.
      * 该产品请填写固定值：QUICK_WAP_WAY
      */
-    WAP_PAY_PARAM_PRODUCT_CODE ("QUICK_WAP_WAY"),
+    WAP_PAY_PARAM_PRODUCT_CODE("QUICK_WAP_WAY"),
     /**
      * Sell Product Code, Name Of Product Code Signed With AliPay.
      * Note: Currently Only Supported:FAST_INSTANT_TRADE_PAY
@@ -48,14 +51,11 @@ public enum PayParamConstant {
      * 销售产品码，与支付宝签约的产品码名称.
      * 注：目前仅支持FAST_INSTANT_TRADE_PAY
      */
-    PAGE_PAT_PARAM_PRODUCT_CODE ("FAST_INSTANT_TRADE_PAY");
-    private String value;
+    PAGE_PAT_PARAM_PRODUCT_CODE("FAST_INSTANT_TRADE_PAY");
+    private final String value;
 
     PayParamConstant(String value) {
         this.value = value;
     }
 
-    public String getValue() {
-        return value;
-    }
 }

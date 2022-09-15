@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay;
 
@@ -25,10 +25,10 @@ import lombok.Data;
 /**
  * ClassName: PagePayChain
  * Description:
- * date: 2019/12/24 21:32
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PagePayChain {
@@ -53,11 +53,11 @@ public class PagePayChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String pay(String returnUrl, String notifyUrl) throws AlipayApiException {
-        AlipayTradePagePayRequest pagePayRequest = new AlipayTradePagePayRequest ();
-        pagePayRequest.setReturnUrl (returnUrl);
-        pagePayRequest.setNotifyUrl (notifyUrl);
-        pagePayRequest.setBizModel (alipayTradePagePayModel);
-        return alipayClient.pageExecute (pagePayRequest).getBody ();
+        AlipayTradePagePayRequest pagePayRequest = new AlipayTradePagePayRequest();
+        pagePayRequest.setReturnUrl(returnUrl);
+        pagePayRequest.setNotifyUrl(notifyUrl);
+        pagePayRequest.setBizModel(alipayTradePagePayModel);
+        return alipayClient.pageExecute(pagePayRequest).getBody();
     }
 
     /**
@@ -70,7 +70,7 @@ public class PagePayChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String pay(AlipayTradePagePayRequest pagePayRequest) throws AlipayApiException {
-        pagePayRequest.setBizModel (alipayTradePagePayModel);
-        return alipayClient.pageExecute (pagePayRequest).getBody ();
+        pagePayRequest.setBizModel(alipayTradePagePayModel);
+        return alipayClient.pageExecute(pagePayRequest).getBody();
     }
 }

@@ -25,12 +25,12 @@ import java.util.List;
 
 /**
  * ClassName: PayQueryParamChain
- * Description: Document Address https://docs.open.alipay.com/api_1/alipay.trade.query
- * 文档地址 https://docs.open.alipay.com/api_1/alipay.trade.query
- * date: 2019/12/25 16:39
+ * Description: Document Address <a href="https://opendocs.alipay.com/open/4e2d51d1_alipay.trade.query?scene=common&pathHash=8abc6ffe">Document Address</a>
+ * 文档地址 <a href="https://opendocs.alipay.com/open/4e2d51d1_alipay.trade.query?scene=common&pathHash=8abc6ffe">文档地址</a>
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PayQueryParamChain {
@@ -50,68 +50,63 @@ public class PayQueryParamChain {
      * @return PayQueryChain
      */
     public PayQueryChain builder() {
-        return new PayQueryChain (alipayClient, alipayTradeQueryModel);
+        return new PayQueryChain(alipayClient, alipayTradeQueryModel);
     }
 
     /**
-     * !!This Is An Indispensable Parameter
-     * When The Order Is Paid, The Incoming Merchant Order Number And The AliPay Transaction Number Can Not Be Empty At The Same Time.
-     * TradeNo, OutTradeNo If There Is TradeNo Priority At The Same Time
+     * Mandatory
+     * The order number of the merchant passed in during order payment and the Alipay transaction number cannot be blank at the same time
      * <p>
-     * !!这是不可缺参数
-     * 订单支付时传入的商户订单号,和支付宝交易号不能同时为空.
+     * 必选
+     * 订单支付时传入的商户订单号,和支付宝交易号不能同时为空
      * TradeNo,OutTradeNo如果同时存在优先取TradeNo
      *
      * @param outTradeNo outTradeNo
      * @return PayQueryParamChain
      */
     public PayQueryParamChain builderOutTradeNo(String outTradeNo) {
-        alipayTradeQueryModel.setOutTradeNo (outTradeNo);
+        alipayTradeQueryModel.setOutTradeNo(outTradeNo);
         return this;
     }
 
     /**
-     * !!This Is An Indispensable Parameter
-     * AliPay Transaction Number And Merchant Order Number Can Not Be Empty At The Same Time.
+     * Mandatory
+     * Alipay transaction number and merchant order number cannot be empty at the same time
      * <p>
-     * !!这是不可缺参数
-     * 支付宝交易号,和商户订单号不能同时为空
+     * 必选
+     * 支付宝交易号，和商户订单号不能同时为空
      *
      * @param tradeNo tradeNo
      * @return PayQueryParamChain
      */
     public PayQueryParamChain builderTradeNo(String tradeNo) {
-        alipayTradeQueryModel.setTradeNo (tradeNo);
+        alipayTradeQueryModel.setTradeNo(tradeNo);
         return this;
     }
 
     /**
-     * It Is Useful In The Bank To Bank Mode. Please Do Not Use It In Other Scenarios;
-     * Through This Parameter, The Double Link Specifies The PID Of The Acquirer Of The Exchange To Be Queried;
+     * Useful in interbank mode, please do not use in other scenarios; Shuanglian specifies the PID of the acquiring institution of the exchange to be queried through this parameter
      * <p>
-     * 银行间联模式下有用,其它场景请不要使用:
-     * 双联通过该参数指定需要查询的交易所属收单机构的PID;
+     * 银行间联模式下有用，其它场景请不要使用； 双联通过该参数指定需要查询的交易所属收单机构的pid
      *
      * @param orgPid orgPid
      * @return PayQueryParamChain
      */
     public PayQueryParamChain builderOrgPid(String orgPid) {
-        alipayTradeQueryModel.setOrgPid (orgPid);
+        alipayTradeQueryModel.setOrgPid(orgPid);
         return this;
     }
 
     /**
-     * Query Option, The Merchant Customizes The Query Return Information By Submitting This Field
-     * Document Address https://docs.open.alipay.com/api_1/alipay.trade.query
+     * Query options, merchants can customize this interface by passing in this parameter to synchronize the response with additional information fields returned in array format
      * <p>
-     * 查询选项,商户通过上送该字段来定制查询返回信息
-     * 文档地址 https://docs.open.alipay.com/api_1/alipay.trade.query
+     * 查询选项，商户传入该参数可定制本接口同步响应额外返回的信息字段，数组格式
      *
      * @param queryOptions queryOptions
      * @return PayQueryParamChain
      */
     public PayQueryParamChain builderQueryOptions(List<String> queryOptions) {
-        alipayTradeQueryModel.setQueryOptions (queryOptions);
+        alipayTradeQueryModel.setQueryOptions(queryOptions);
         return this;
     }
 

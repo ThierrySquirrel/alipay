@@ -25,10 +25,10 @@ import lombok.Data;
 /**
  * ClassName: PayQueryChain
  * Description:
- * date: 2019/12/25 17:06
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PayQueryChain {
@@ -49,9 +49,9 @@ public class PayQueryChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String query() throws AlipayApiException {
-        AlipayTradeQueryRequest queryRequest = new AlipayTradeQueryRequest ();
-        queryRequest.setBizModel (alipayTradeQueryModel);
-        return alipayClient.execute (queryRequest).getBody ();
+        AlipayTradeQueryRequest queryRequest = new AlipayTradeQueryRequest();
+        queryRequest.setBizModel(alipayTradeQueryModel);
+        return alipayClient.execute(queryRequest).getBody();
     }
 
     /**
@@ -64,6 +64,6 @@ public class PayQueryChain {
      * @throws AlipayApiException AlipayApiException
      */
     public String query(AlipayTradeQueryRequest queryRequest) throws AlipayApiException {
-        return alipayClient.execute (queryRequest).getBody ();
+        return alipayClient.execute(queryRequest).getBody();
     }
 }

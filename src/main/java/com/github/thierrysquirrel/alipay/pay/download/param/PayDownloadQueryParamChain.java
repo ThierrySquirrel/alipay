@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay.download.param;
 
@@ -23,11 +23,12 @@ import lombok.Data;
 
 /**
  * ClassName: PayDownloadQueryParamChain
- * Description:
- * date: 2019/12/25 18:59
+ * Description: Document Address <a href="https://opendocs.alipay.com/open/b5c20219_alipay.data.dataservice.bill.downloadurl.query?scene=common&pathHash=5a085da8">Document Address</a>
+ * 文档地址 <a href="https://opendocs.alipay.com/open/b5c20219_alipay.data.dataservice.bill.downloadurl.query?scene=common&pathHash=5a085da8">文档地址</a>
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class PayDownloadQueryParamChain {
@@ -47,47 +48,49 @@ public class PayDownloadQueryParamChain {
      * @return PayDownloadQueryChain
      */
     public PayDownloadQueryChain builder() {
-        return new PayDownloadQueryChain (alipayClient, alipayDataDataserviceBillDownloadurlQueryModel);
+        return new PayDownloadQueryChain(alipayClient, alipayDataDataserviceBillDownloadurlQueryModel);
     }
 
     /**
-     * !!This Is An Indispensable Parameter
-     * The Type Of Bill, The Merchant Through The Interface Or Merchant Authorized By The Open Platform,
-     * Its Service Providers Through The Interface Can Get The Following Types Of Bills:
-     * trade, signcustomer;
-     * trade Refers To The Business Account Receipts Based On The AliPay Transaction;
-     * signcustomer Refers To The Account Receipts Based On The Changes In The AliPay Balance Income And Expenditure.
+     * Mandatory
+     * Bill types, merchants can obtain the following bill types through interfaces or through interfaces authorized by the open platform for their affiliated service providers
      * <p>
-     * !!这是不可缺参数
-     * 账单类型,
-     * 商户通过接口或商户经开放平台授权后其所属服务商通过接口可以获取以下账单类型:
-     * trade、signcustomer；
-     * trade指商户基于支付宝交易收单的业务账单；
-     * signcustomer是指基于商户支付宝余额收入及支出等资金变动的帐务账单.
+     * 必选
+     * 账单类型，商户通过接口或商户经开放平台授权后其所属服务商通过接口可以获取以下账单类型
      *
      * @param billType billType
      * @return PayDownloadQueryParamChain
      */
     public PayDownloadQueryParamChain builderBillType(String billType) {
-        alipayDataDataserviceBillDownloadurlQueryModel.setBillType (billType);
+        alipayDataDataserviceBillDownloadurlQueryModel.setBillType(billType);
         return this;
     }
 
     /**
-     * !!This Is An Indispensable Parameter
-     * Bill Time: The Format Of Daily Bill Is yyyy-MM-dd,
-     * And The Earliest Daily Bill From January 1, 2016 Can Be Downloaded;
-     * The Format Of Monthly Bill Is yyyy-MM, And The Earliest Monthly Bill From January 2016 Can Be Downloaded.
+     * Mandatory
+     * Billing time: * Daily billing format is yyyy MM dd, and the earliest daily billing format available for download is January 1, 2016
      * <p>
-     * !!这是不可缺参数
-     * 账单时间:日账单格式为yyyy-MM-dd,最早可下载2016年1月1日开始的日账单；
-     * 月账单格式为yyyy-MM,最早可下载2016年1月开始的月账单.
+     * 必选
+     * 账单时间： * 日账单格式为yyyy-MM-dd，最早可下载2016年1月1日开始的日账单
      *
      * @param billDate billDate
      * @return PayDownloadQueryParamChain
      */
     public PayDownloadQueryParamChain builderBillDate(String billDate) {
-        alipayDataDataserviceBillDownloadurlQueryModel.setBillDate (billDate);
+        alipayDataDataserviceBillDownloadurlQueryModel.setBillDate(billDate);
+        return this;
+    }
+
+    /**
+     * Second level merchant smid, this parameter can only be used when bill-type is trade_zft_merchant
+     * <p>
+     * 二级商户smid，这个参数只在bill_type是trade_zft_merchant时才能使用
+     *
+     * @param smId smId
+     * @return PayDownloadQueryParamChain
+     */
+    public PayDownloadQueryParamChain builderSmId(String smId) {
+        alipayDataDataserviceBillDownloadurlQueryModel.setSmid(smId);
         return this;
     }
 }

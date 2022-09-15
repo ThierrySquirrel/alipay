@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.pay;
 
@@ -32,10 +32,10 @@ import lombok.Data;
 /**
  * ClassName: DefaultPayChain
  * Description:
- * date: 2019/12/24 16:50
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 @Data
 public class DefaultPayChain {
@@ -50,21 +50,21 @@ public class DefaultPayChain {
      * <p>
      * 使用app支付,文档地址 https://docs.open.alipay.com/204
      *
-     * @param subject     Product Title / Transaction Title / Order Title / Order Keyword, Etc
-     *                    商品的标题/交易标题/订单标题/订单关键字等
      * @param outTradeNo  Unique Order Number Of Merchant Website
      *                    商户网站唯一订单号
      * @param totalAmount Total Order Amount, Unit: Yuan, Accurate To Two Decimal Places, Value Range [0.01100000000]
      *                    订单总金额,单位为元,精确到小数点后两位,取值范围[0.01,100000000]
+     * @param subject     Product Title / Transaction Title / Order Title / Order Keyword, Etc
+     *                    商品的标题/交易标题/订单标题/订单关键字等
      * @return AppPayParamChain
      */
-    public AppPayParamChain appPay(String subject, String outTradeNo, String totalAmount) {
-        AlipayTradeAppPayModel appPayModel = new AlipayTradeAppPayModel ();
-        appPayModel.setSubject (subject);
-        appPayModel.setOutTradeNo (outTradeNo);
-        appPayModel.setTotalAmount (totalAmount);
-        appPayModel.setProductCode (PayParamConstant.APP_PAY_PARAM_PRODUCT_CODE.getValue ());
-        return new AppPayParamChain (alipayClient, appPayModel);
+    public AppPayParamChain appPay(String outTradeNo, String totalAmount, String subject) {
+        AlipayTradeAppPayModel appPayModel = new AlipayTradeAppPayModel();
+        appPayModel.setOutTradeNo(outTradeNo);
+        appPayModel.setTotalAmount(totalAmount);
+        appPayModel.setSubject(subject);
+        appPayModel.setProductCode(PayParamConstant.APP_PAY_PARAM_PRODUCT_CODE.getValue());
+        return new AppPayParamChain(alipayClient, appPayModel);
     }
 
     /**
@@ -78,7 +78,7 @@ public class DefaultPayChain {
      * @return AppPayParamChain
      */
     public AppPayParamChain appPay(AlipayTradeAppPayModel appPayModel) {
-        return new AppPayParamChain (alipayClient, appPayModel);
+        return new AppPayParamChain(alipayClient, appPayModel);
     }
 
     /**
@@ -86,21 +86,21 @@ public class DefaultPayChain {
      * <p>
      * 使用手机网站支付,文档地址 https://docs.open.alipay.com/203
      *
-     * @param subject     Product Title / Transaction Title / Order Title / Order Keyword, Etc
-     *                    商品的标题/交易标题/订单标题/订单关键字等
      * @param outTradeNo  Unique Order Number Of Merchant Website
      *                    商户网站唯一订单号
      * @param totalAmount Total Order Amount, Unit: Yuan, Accurate To Two Decimal Places, Value Range [0.01100000000]
      *                    订单总金额,单位为元,精确到小数点后两位,取值范围[0.01,100000000]
+     * @param subject     Product Title / Transaction Title / Order Title / Order Keyword, Etc
+     *                    商品的标题/交易标题/订单标题/订单关键字等
      * @return WapPayParamChain
      */
-    public WapPayParamChain wapPay(String subject, String outTradeNo, String totalAmount) {
-        AlipayTradeWapPayModel payModel = new AlipayTradeWapPayModel ();
-        payModel.setSubject (subject);
-        payModel.setOutTradeNo (outTradeNo);
-        payModel.setTotalAmount (totalAmount);
-        payModel.setProductCode (PayParamConstant.WAP_PAY_PARAM_PRODUCT_CODE.getValue ());
-        return new WapPayParamChain (alipayClient, payModel);
+    public WapPayParamChain wapPay(String outTradeNo, String totalAmount, String subject) {
+        AlipayTradeWapPayModel payModel = new AlipayTradeWapPayModel();
+        payModel.setOutTradeNo(outTradeNo);
+        payModel.setTotalAmount(totalAmount);
+        payModel.setSubject(subject);
+        payModel.setProductCode(PayParamConstant.WAP_PAY_PARAM_PRODUCT_CODE.getValue());
+        return new WapPayParamChain(alipayClient, payModel);
     }
 
     /**
@@ -114,7 +114,7 @@ public class DefaultPayChain {
      * @return WapPayParamChain
      */
     public WapPayParamChain wapPay(AlipayTradeWapPayModel payModel) {
-        return new WapPayParamChain (alipayClient, payModel);
+        return new WapPayParamChain(alipayClient, payModel);
     }
 
     /**
@@ -130,13 +130,13 @@ public class DefaultPayChain {
      *                    订单总金额,单位为元,精确到小数点后两位,取值范围[0.01,100000000]
      * @return PagePayParamChain
      */
-    public PagePayParamChain pagePay(String subject, String outTradeNo, String totalAmount) {
-        AlipayTradePagePayModel payModel = new AlipayTradePagePayModel ();
-        payModel.setSubject (subject);
-        payModel.setOutTradeNo (outTradeNo);
-        payModel.setTotalAmount (totalAmount);
-        payModel.setProductCode (PayParamConstant.PAGE_PAT_PARAM_PRODUCT_CODE.getValue ());
-        return new PagePayParamChain (alipayClient, payModel);
+    public PagePayParamChain pagePay(String outTradeNo, String totalAmount, String subject) {
+        AlipayTradePagePayModel payModel = new AlipayTradePagePayModel();
+        payModel.setOutTradeNo(outTradeNo);
+        payModel.setTotalAmount(totalAmount);
+        payModel.setSubject(subject);
+        payModel.setProductCode(PayParamConstant.PAGE_PAT_PARAM_PRODUCT_CODE.getValue());
+        return new PagePayParamChain(alipayClient, payModel);
     }
 
     /**
@@ -150,7 +150,7 @@ public class DefaultPayChain {
      * @return PagePayParamChain
      */
     public PagePayParamChain pagePay(AlipayTradePagePayModel payModel) {
-        return new PagePayParamChain (alipayClient, payModel);
+        return new PagePayParamChain(alipayClient, payModel);
     }
 
     /**
@@ -158,10 +158,6 @@ public class DefaultPayChain {
      * <p>
      * 关闭交易,文档地址 https://docs.open.alipay.com/api_1/alipay.trade.close
      *
-     * @param outTradeNo When The Order Is Paid, The Incoming Merchant Order Number And The AliPay Transaction Number Can Not Be Empty At The Same Time.
-     *                   TradeNo, OutTradeNo If Both Exist, Take TradeNo First
-     *                   订单支付时传入的商户订单号,和支付宝交易号不能同时为空.
-     *                   TradeNo,OutTradeNo如果同时存在优先取TradeNo
      * @param tradeNo    The Transaction In AliPay System Transaction Code.
      *                   The Shortest 16 Bits, The Longest 64 Bits.
      *                   And OutTradeNo Cannot Be Empty At The Same Time.
@@ -171,13 +167,17 @@ public class DefaultPayChain {
      *                   和OutTradeNo不能同时为空,
      *                   如果同时传了 OutTradeNo和 TradeNo,
      *                   则以 TradeNo为准.
+     * @param outTradeNo When The Order Is Paid, The Incoming Merchant Order Number And The AliPay Transaction Number Can Not Be Empty At The Same Time.
+     *                   TradeNo, OutTradeNo If Both Exist, Take TradeNo First
+     *                   订单支付时传入的商户订单号,和支付宝交易号不能同时为空.
+     *                   TradeNo,OutTradeNo如果同时存在优先取TradeNo
      * @return PayCloseParamChain
      */
-    public PayCloseParamChain closePay(String outTradeNo, String tradeNo) {
-        AlipayTradeCloseModel closeModel = new AlipayTradeCloseModel ();
-        closeModel.setOutTradeNo (outTradeNo);
-        closeModel.setTradeNo (tradeNo);
-        return new PayCloseParamChain (alipayClient, closeModel);
+    public PayCloseParamChain closePay(String tradeNo, String outTradeNo) {
+        AlipayTradeCloseModel closeModel = new AlipayTradeCloseModel();
+        closeModel.setTradeNo(tradeNo);
+        closeModel.setOutTradeNo(outTradeNo);
+        return new PayCloseParamChain(alipayClient, closeModel);
     }
 
     /**
@@ -191,7 +191,7 @@ public class DefaultPayChain {
      * @return PayCloseParamChain
      */
     public PayCloseParamChain closePay(AlipayTradeCloseModel closeModel) {
-        return new PayCloseParamChain (alipayClient, closeModel);
+        return new PayCloseParamChain(alipayClient, closeModel);
     }
 
     /**
@@ -208,10 +208,10 @@ public class DefaultPayChain {
      * @return PayQueryParamChain
      */
     public PayQueryParamChain queryPay(String outTradeNo, String tradeNo) {
-        AlipayTradeQueryModel queryModel = new AlipayTradeQueryModel ();
-        queryModel.setOutTradeNo (outTradeNo);
-        queryModel.setTradeNo (tradeNo);
-        return new PayQueryParamChain (alipayClient, queryModel);
+        AlipayTradeQueryModel queryModel = new AlipayTradeQueryModel();
+        queryModel.setOutTradeNo(outTradeNo);
+        queryModel.setTradeNo(tradeNo);
+        return new PayQueryParamChain(alipayClient, queryModel);
     }
 
     /**
@@ -225,7 +225,7 @@ public class DefaultPayChain {
      * @return PayQueryParamChain
      */
     public PayQueryParamChain queryPay(AlipayTradeQueryModel queryModel) {
-        return new PayQueryParamChain (alipayClient, queryModel);
+        return new PayQueryParamChain(alipayClient, queryModel);
     }
 
     /**
@@ -233,21 +233,21 @@ public class DefaultPayChain {
      * <p>
      * 交易退款,文档地址 https://docs.open.alipay.com/api_1/alipay.trade.refund
      *
+     * @param refundAmount The Amount To Be Refunded Cannot Be Greater Than The Order Amount.
+     *                     The Unit Is Yuan And Two Decimal Places Are Supported
+     *                     需要退款的金额,该金额不能大于订单金额,单位为元,支持两位小数
      * @param outTradeNo   The Merchant Order Number Passed In During Order Payment Cannot Be Empty At The Same Time As TradeNo
      *                     订单支付时传入的商户订单号,不能和 tradeNo同时为空.
      * @param tradeNo      AliPay Transaction Number And Merchant Order Number Can Not Be Empty At The Same Time.
      *                     支付宝交易号,和商户订单号不能同时为空
-     * @param refundAmount The Amount To Be Refunded Cannot Be Greater Than The Order Amount.
-     *                     The Unit Is Yuan And Two Decimal Places Are Supported
-     *                     需要退款的金额,该金额不能大于订单金额,单位为元,支持两位小数
      * @return PayRefundParamChain
      */
-    public PayRefundParamChain refundPay(String outTradeNo, String tradeNo, String refundAmount) {
-        AlipayTradeRefundModel refundModel = new AlipayTradeRefundModel ();
-        refundModel.setOutTradeNo (outTradeNo);
-        refundModel.setTradeNo (tradeNo);
-        refundModel.setRefundAmount (refundAmount);
-        return new PayRefundParamChain (alipayClient, refundModel);
+    public PayRefundParamChain refundPay(String refundAmount, String outTradeNo, String tradeNo) {
+        AlipayTradeRefundModel refundModel = new AlipayTradeRefundModel();
+        refundModel.setRefundAmount(refundAmount);
+        refundModel.setOutTradeNo(outTradeNo);
+        refundModel.setTradeNo(tradeNo);
+        return new PayRefundParamChain(alipayClient, refundModel);
     }
 
     /**
@@ -261,32 +261,32 @@ public class DefaultPayChain {
      * @return PayRefundParamChain
      */
     public PayRefundParamChain refundPay(AlipayTradeRefundModel refundModel) {
-        return new PayRefundParamChain (alipayClient, refundModel);
+        return new PayRefundParamChain(alipayClient, refundModel);
     }
 
     /**
      * Refund Inquiry,Document Address https://docs.open.alipay.com/api_1/alipay.trade.fastpay.refund.query
      * 退款查询,文档地址 https://docs.open.alipay.com/api_1/alipay.trade.fastpay.refund.query
      *
-     * @param outTradeNo   When The Order Is Paid, The Incoming Merchant Order Number And The AliPay Transaction Number Can Not Be Empty At The Same Time.
-     *                     OutTradeNo, OutRequestNo If There Is A Priority OutTradeNo At The Same Time
-     *                     订单支付时传入的商户订单号,和支付宝交易号不能同时为空.
-     *                     OutTradeNo,OutRequestNo如果同时存在优先取OutTradeNo
-     * @param tradeNo      AliPay Transaction Number And Merchant Order Number Can Not Be Empty At The Same Time.
-     *                     支付宝交易号,和商户订单号不能同时为空
      * @param outRequestNo When Requesting The Refund Interface, The Incoming Refund Request Number.
      *                     If It Is Not Passed In At The Time Of Refund Request,
      *                     The Value Is The External Transaction Number At The Time Of Transaction Creation
      *                     请求退款接口时,传入的退款请求号,
      *                     如果在退款请求时未传入,则该值为创建交易时的外部交易号
+     * @param tradeNo      AliPay Transaction Number And Merchant Order Number Can Not Be Empty At The Same Time.
+     *                     支付宝交易号,和商户订单号不能同时为空
+     * @param outTradeNo   When The Order Is Paid, The Incoming Merchant Order Number And The AliPay Transaction Number Can Not Be Empty At The Same Time.
+     *                     OutTradeNo, OutRequestNo If There Is A Priority OutTradeNo At The Same Time
+     *                     订单支付时传入的商户订单号,和支付宝交易号不能同时为空.
+     *                     OutTradeNo,OutRequestNo如果同时存在优先取OutTradeNo
      * @return PayRefundQueryParamChain
      */
-    public PayRefundQueryParamChain refundQueryPay(String outTradeNo, String tradeNo, String outRequestNo) {
-        AlipayTradeFastpayRefundQueryModel queryModel = new AlipayTradeFastpayRefundQueryModel ();
-        queryModel.setOutTradeNo (outTradeNo);
-        queryModel.setTradeNo (tradeNo);
-        queryModel.setOutRequestNo (outRequestNo);
-        return new PayRefundQueryParamChain (alipayClient, queryModel);
+    public PayRefundQueryParamChain refundQueryPay(String outRequestNo, String tradeNo, String outTradeNo) {
+        AlipayTradeFastpayRefundQueryModel queryModel = new AlipayTradeFastpayRefundQueryModel();
+        queryModel.setOutTradeNo(outTradeNo);
+        queryModel.setTradeNo(tradeNo);
+        queryModel.setOutRequestNo(outRequestNo);
+        return new PayRefundQueryParamChain(alipayClient, queryModel);
     }
 
     /**
@@ -300,7 +300,7 @@ public class DefaultPayChain {
      * @return PayRefundQueryParamChain
      */
     public PayRefundQueryParamChain refundQueryPay(AlipayTradeFastpayRefundQueryModel queryModel) {
-        return new PayRefundQueryParamChain (alipayClient, queryModel);
+        return new PayRefundQueryParamChain(alipayClient, queryModel);
     }
 
     /**
@@ -326,10 +326,10 @@ public class DefaultPayChain {
      * @return PayDownloadQueryParamChain
      */
     public PayDownloadQueryParamChain downloadQueryPay(String billType, String billDate) {
-        AlipayDataDataserviceBillDownloadurlQueryModel queryModel = new AlipayDataDataserviceBillDownloadurlQueryModel ();
-        queryModel.setBillType (billType);
-        queryModel.setBillDate (billDate);
-        return new PayDownloadQueryParamChain (alipayClient, queryModel);
+        AlipayDataDataserviceBillDownloadurlQueryModel queryModel = new AlipayDataDataserviceBillDownloadurlQueryModel();
+        queryModel.setBillType(billType);
+        queryModel.setBillDate(billDate);
+        return new PayDownloadQueryParamChain(alipayClient, queryModel);
     }
 
     /**
@@ -343,7 +343,7 @@ public class DefaultPayChain {
      * @return PayDownloadQueryParamChain
      */
     public PayDownloadQueryParamChain downloadQueryPay(AlipayDataDataserviceBillDownloadurlQueryModel queryModel) {
-        return new PayDownloadQueryParamChain (alipayClient, queryModel);
+        return new PayDownloadQueryParamChain(alipayClient, queryModel);
     }
 
 }

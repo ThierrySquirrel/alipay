@@ -1,5 +1,5 @@
 /**
- * Copyright 2019 the original author or authors.
+ * Copyright 2024/8/6 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */
+ **/
 
 package com.github.thierrysquirrel.alipay.factory;
 
@@ -24,12 +24,15 @@ import com.github.thierrysquirrel.alipay.pay.DefaultPayChain;
 /**
  * ClassName: PayRootChainFactory
  * Description:
- * date: 2019/12/24 16:49
+ * Date:2024/8/6
  *
  * @author ThierrySquirrel
- * @since JDK 1.8
+ * @since JDK21
  */
 public class PayRootChainFactory {
+
+    private PayRootChainFactory() {
+    }
 
     /**
      * Create Online Environment Pay Chain For, Default Parameters, See
@@ -47,7 +50,7 @@ public class PayRootChainFactory {
      * @return DefaultPayChain
      */
     public static DefaultPayChain createdPayChain(String appId, String privateKey, String publicKey) {
-        return new DefaultPayChain (new DefaultAlipayClient (PayClientConstant.PAY_GATEWAY.getValue (), appId, privateKey, PayClientConstant.PAY_FORMAT.getValue (), PayClientConstant.PAY_CHARSET.getValue (), publicKey, PayClientConstant.PAY_SIGN_TYPE.getValue ()));
+        return new DefaultPayChain(new DefaultAlipayClient(PayClientConstant.PAY_GATEWAY.getValue(), appId, privateKey, PayClientConstant.PAY_FORMAT.getValue(), PayClientConstant.PAY_CHARSET.getValue(), publicKey, PayClientConstant.PAY_SIGN_TYPE.getValue()));
     }
 
     /**
@@ -66,7 +69,7 @@ public class PayRootChainFactory {
      * @return DefaultPayChain
      */
     public static DefaultPayChain createdDevPayChain(String appId, String privateKey, String publicKey) {
-        return new DefaultPayChain (new DefaultAlipayClient (PayClientConstant.DEV_PAY_GATEWAY.getValue (), appId, privateKey, PayClientConstant.PAY_FORMAT.getValue (), PayClientConstant.PAY_CHARSET.getValue (), publicKey, PayClientConstant.PAY_SIGN_TYPE.getValue ()));
+        return new DefaultPayChain(new DefaultAlipayClient(PayClientConstant.DEV_PAY_GATEWAY.getValue(), appId, privateKey, PayClientConstant.PAY_FORMAT.getValue(), PayClientConstant.PAY_CHARSET.getValue(), publicKey, PayClientConstant.PAY_SIGN_TYPE.getValue()));
     }
 
     /**
@@ -80,6 +83,6 @@ public class PayRootChainFactory {
      * @return DefaultPayChain
      */
     public static DefaultPayChain createdPayChain(AlipayClient payClient) {
-        return new DefaultPayChain (payClient);
+        return new DefaultPayChain(payClient);
     }
 }
