@@ -222,5 +222,6 @@ public class PayCheck {
 }
 ```
 
-![AmericanFlag](https://user-images.githubusercontent.com/49895274/184470756-bcc29dcd-3d89-41f6-80d7-1ebecb867d2b.jpeg)  
+![Russian flag](https://user-images.githubusercontent.com/49895274/190371499-a9a2f46b-4604-4aed-9354-697c24040414.png)
+
 
