@@ -6,9 +6,6 @@ AliPay Java SDK
 
 [中文](./README_zh_CN.md)  
 
-Important: This project is now out of maintenance.  
-We have decided to suspend the maintenance or update of all Ali products.  
-
 Support Function：
 - [x] App Payment
 - [x] Mobile Website Payment
