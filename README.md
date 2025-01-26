@@ -234,6 +234,5 @@ public class PayCheck {
 }
 ```
 
-![Russian flag](https://user-images.githubusercontent.com/49895274/190371327-dc42b67c-6785-45e3-bcac-076697f7b73d.png)
 
 
