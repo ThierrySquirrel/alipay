@@ -89,9 +89,9 @@
 ```xml
 <!--在pom.xml中添加依赖-->
         <dependency>
-            <groupId>com.github.thierrysquirrel</groupId>
+            <groupId>io.github.thierrysquirrel</groupId>
             <artifactId>alipay</artifactId>
-            <version>1.4.0.0-RELEASE</version>
+            <version>1.5.0.2-RELEASE</version>
         </dependency>
 ```       
 
