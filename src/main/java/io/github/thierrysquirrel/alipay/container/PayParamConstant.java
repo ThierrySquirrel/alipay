@@ -16,7 +16,6 @@
 
 package io.github.thierrysquirrel.alipay.container;
 
-import lombok.Getter;
 
 /**
  * ClassName: PayParamConstant
@@ -26,7 +25,6 @@ import lombok.Getter;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Getter
 public enum PayParamConstant {
     /**
      * Product Code, Product Code Signed By AliPay And Merchants,
@@ -53,6 +51,10 @@ public enum PayParamConstant {
      */
     PAGE_PAT_PARAM_PRODUCT_CODE("FAST_INSTANT_TRADE_PAY");
     private final String value;
+
+    public String getValue() {
+        return value;
+    }
 
     PayParamConstant(String value) {
         this.value = value;

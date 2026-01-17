@@ -20,7 +20,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayDataDataserviceBillDownloadurlQueryModel;
 import com.alipay.api.request.AlipayDataDataserviceBillDownloadurlQueryRequest;
-import lombok.Data;
 
 /**
  * ClassName: PayDownloadQueryChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayDownloadQueryChain {
     private AlipayClient alipayClient;
     private AlipayDataDataserviceBillDownloadurlQueryModel alipayDataDataserviceBillDownloadurlQueryModel;
@@ -68,4 +66,27 @@ public class PayDownloadQueryChain {
         return alipayClient.execute(queryRequest).getBillDownloadUrl();
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayDataDataserviceBillDownloadurlQueryModel getAlipayDataDataserviceBillDownloadurlQueryModel() {
+        return alipayDataDataserviceBillDownloadurlQueryModel;
+    }
+
+    public void setAlipayDataDataserviceBillDownloadurlQueryModel(AlipayDataDataserviceBillDownloadurlQueryModel alipayDataDataserviceBillDownloadurlQueryModel) {
+        this.alipayDataDataserviceBillDownloadurlQueryModel = alipayDataDataserviceBillDownloadurlQueryModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayDownloadQueryChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayDataDataserviceBillDownloadurlQueryModel=" + alipayDataDataserviceBillDownloadurlQueryModel +
+                '}';
+    }
 }

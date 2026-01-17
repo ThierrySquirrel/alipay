@@ -19,8 +19,6 @@ package io.github.thierrysquirrel.alipay.pay.query.param;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeQueryModel;
 import io.github.thierrysquirrel.alipay.pay.query.PayQueryChain;
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -32,7 +30,6 @@ import java.util.List;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayQueryParamChain {
     private AlipayClient alipayClient;
     private AlipayTradeQueryModel alipayTradeQueryModel;
@@ -110,4 +107,27 @@ public class PayQueryParamChain {
         return this;
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeQueryModel getAlipayTradeQueryModel() {
+        return alipayTradeQueryModel;
+    }
+
+    public void setAlipayTradeQueryModel(AlipayTradeQueryModel alipayTradeQueryModel) {
+        this.alipayTradeQueryModel = alipayTradeQueryModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayQueryParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeQueryModel=" + alipayTradeQueryModel +
+                '}';
+    }
 }

@@ -19,8 +19,6 @@ package io.github.thierrysquirrel.alipay.pay.refund.query.param;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeFastpayRefundQueryModel;
 import io.github.thierrysquirrel.alipay.pay.refund.query.PayRefundQueryChain;
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -32,7 +30,6 @@ import java.util.List;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayRefundQueryParamChain {
     private AlipayClient alipayClient;
     private AlipayTradeFastpayRefundQueryModel alipayTradeFastpayRefundQueryModel;
@@ -110,5 +107,29 @@ public class PayRefundQueryParamChain {
     public PayRefundQueryParamChain builder(List<String> queryOptions) {
         alipayTradeFastpayRefundQueryModel.setQueryOptions(queryOptions);
         return this;
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeFastpayRefundQueryModel getAlipayTradeFastpayRefundQueryModel() {
+        return alipayTradeFastpayRefundQueryModel;
+    }
+
+    public void setAlipayTradeFastpayRefundQueryModel(AlipayTradeFastpayRefundQueryModel alipayTradeFastpayRefundQueryModel) {
+        this.alipayTradeFastpayRefundQueryModel = alipayTradeFastpayRefundQueryModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayRefundQueryParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeFastpayRefundQueryModel=" + alipayTradeFastpayRefundQueryModel +
+                '}';
     }
 }

@@ -20,7 +20,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeFastpayRefundQueryModel;
 import com.alipay.api.request.AlipayTradeFastpayRefundQueryRequest;
-import lombok.Data;
 
 /**
  * ClassName: PayRefundQueryChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayRefundQueryChain {
     private AlipayClient alipayClient;
     private AlipayTradeFastpayRefundQueryModel alipayTradeFastpayRefundQueryModel;
@@ -68,4 +66,27 @@ public class PayRefundQueryChain {
         return alipayClient.execute(queryRequest).getBody();
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeFastpayRefundQueryModel getAlipayTradeFastpayRefundQueryModel() {
+        return alipayTradeFastpayRefundQueryModel;
+    }
+
+    public void setAlipayTradeFastpayRefundQueryModel(AlipayTradeFastpayRefundQueryModel alipayTradeFastpayRefundQueryModel) {
+        this.alipayTradeFastpayRefundQueryModel = alipayTradeFastpayRefundQueryModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayRefundQueryChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeFastpayRefundQueryModel=" + alipayTradeFastpayRefundQueryModel +
+                '}';
+    }
 }

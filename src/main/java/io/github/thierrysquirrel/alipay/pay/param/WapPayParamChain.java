@@ -22,8 +22,6 @@ import com.alipay.api.domain.ExtUserInfo;
 import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.domain.GoodsDetail;
 import io.github.thierrysquirrel.alipay.pay.WapPayChain;
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -35,7 +33,6 @@ import java.util.List;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class WapPayParamChain {
     private AlipayClient alipayClient;
     private AlipayTradeWapPayModel alipayTradeWapPayModel;
@@ -232,5 +229,29 @@ public class WapPayParamChain {
     public WapPayParamChain builderExtUserInfo(ExtUserInfo extUserInfo) {
         alipayTradeWapPayModel.setExtUserInfo(extUserInfo);
         return this;
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeWapPayModel getAlipayTradeWapPayModel() {
+        return alipayTradeWapPayModel;
+    }
+
+    public void setAlipayTradeWapPayModel(AlipayTradeWapPayModel alipayTradeWapPayModel) {
+        this.alipayTradeWapPayModel = alipayTradeWapPayModel;
+    }
+
+    @Override
+    public String toString() {
+        return "WapPayParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeWapPayModel=" + alipayTradeWapPayModel +
+                '}';
     }
 }

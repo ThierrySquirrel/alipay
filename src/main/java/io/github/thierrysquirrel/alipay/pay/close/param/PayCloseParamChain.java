@@ -19,7 +19,6 @@ package io.github.thierrysquirrel.alipay.pay.close.param;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeCloseModel;
 import io.github.thierrysquirrel.alipay.pay.close.PayCloseChain;
-import lombok.Data;
 
 /**
  * ClassName: PayCloseParamChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayCloseParamChain {
     private AlipayClient alipayClient;
     private AlipayTradeCloseModel alipayTradeCloseModel;
@@ -94,5 +92,27 @@ public class PayCloseParamChain {
         return this;
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
 
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeCloseModel getAlipayTradeCloseModel() {
+        return alipayTradeCloseModel;
+    }
+
+    public void setAlipayTradeCloseModel(AlipayTradeCloseModel alipayTradeCloseModel) {
+        this.alipayTradeCloseModel = alipayTradeCloseModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayCloseParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeCloseModel=" + alipayTradeCloseModel +
+                '}';
+    }
 }

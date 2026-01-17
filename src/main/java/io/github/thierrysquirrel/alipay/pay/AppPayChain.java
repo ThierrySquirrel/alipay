@@ -20,7 +20,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeAppPayModel;
 import com.alipay.api.request.AlipayTradeAppPayRequest;
-import lombok.Data;
 
 /**
  * ClassName: AppPayChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class AppPayChain {
     private AlipayClient alipayClient;
     private AlipayTradeAppPayModel alipayTradeAppPayModel;
@@ -68,5 +66,29 @@ public class AppPayChain {
     public String pay(AlipayTradeAppPayRequest payRequest) throws AlipayApiException {
         payRequest.setBizModel(alipayTradeAppPayModel);
         return alipayClient.sdkExecute(payRequest).getBody();
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeAppPayModel getAlipayTradeAppPayModel() {
+        return alipayTradeAppPayModel;
+    }
+
+    public void setAlipayTradeAppPayModel(AlipayTradeAppPayModel alipayTradeAppPayModel) {
+        this.alipayTradeAppPayModel = alipayTradeAppPayModel;
+    }
+
+    @Override
+    public String toString() {
+        return "AppPayChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeAppPayModel=" + alipayTradeAppPayModel +
+                '}';
     }
 }

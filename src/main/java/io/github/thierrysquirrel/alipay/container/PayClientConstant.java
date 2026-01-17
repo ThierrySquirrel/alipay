@@ -16,7 +16,6 @@
 
 package io.github.thierrysquirrel.alipay.container;
 
-import lombok.Getter;
 
 /**
  * ClassName: PayClientConstant
@@ -26,7 +25,6 @@ import lombok.Getter;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Getter
 public enum PayClientConstant {
     /**
      * AliPay Online Environment Gateway
@@ -59,6 +57,10 @@ public enum PayClientConstant {
      */
     PAY_SIGN_TYPE("RSA2");
     private final String value;
+
+    public String getValue() {
+        return value;
+    }
 
     PayClientConstant(String value) {
         this.value = value;

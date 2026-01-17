@@ -22,8 +22,6 @@ import com.alipay.api.domain.ExtUserInfo;
 import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.domain.GoodsDetail;
 import io.github.thierrysquirrel.alipay.pay.AppPayChain;
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -36,7 +34,6 @@ import java.util.List;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class AppPayParamChain {
     private AlipayClient alipayClient;
     private AlipayTradeAppPayModel alipayTradeAppPayModel;
@@ -206,5 +203,27 @@ public class AppPayParamChain {
         return this;
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
 
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeAppPayModel getAlipayTradeAppPayModel() {
+        return alipayTradeAppPayModel;
+    }
+
+    public void setAlipayTradeAppPayModel(AlipayTradeAppPayModel alipayTradeAppPayModel) {
+        this.alipayTradeAppPayModel = alipayTradeAppPayModel;
+    }
+
+    @Override
+    public String toString() {
+        return "AppPayParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeAppPayModel=" + alipayTradeAppPayModel +
+                '}';
+    }
 }

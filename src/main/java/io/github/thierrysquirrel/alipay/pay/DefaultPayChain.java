@@ -27,7 +27,6 @@ import io.github.thierrysquirrel.alipay.pay.param.WapPayParamChain;
 import io.github.thierrysquirrel.alipay.pay.query.param.PayQueryParamChain;
 import io.github.thierrysquirrel.alipay.pay.refund.param.PayRefundParamChain;
 import io.github.thierrysquirrel.alipay.pay.refund.query.param.PayRefundQueryParamChain;
-import lombok.Data;
 
 /**
  * ClassName: DefaultPayChain
@@ -37,7 +36,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class DefaultPayChain {
     private AlipayClient alipayClient;
 
@@ -122,12 +120,12 @@ public class DefaultPayChain {
      * <p>
      * 使用电脑网站支付,文档地址 https://docs.open.alipay.com/270
      *
-     * @param subject     Product Title / Transaction Title / Order Title / Order Keyword, Etc
-     *                    商品的标题/交易标题/订单标题/订单关键字等
      * @param outTradeNo  Unique Order Number Of Merchant Website
      *                    商户网站唯一订单号
      * @param totalAmount Total Order Amount, Unit: Yuan, Accurate To Two Decimal Places, Value Range [0.01100000000]
      *                    订单总金额,单位为元,精确到小数点后两位,取值范围[0.01,100000000]
+     * @param subject     Product Title / Transaction Title / Order Title / Order Keyword, Etc
+     *                    商品的标题/交易标题/订单标题/订单关键字等
      * @return PagePayParamChain
      */
     public PagePayParamChain pagePay(String outTradeNo, String totalAmount, String subject) {
@@ -346,4 +344,18 @@ public class DefaultPayChain {
         return new PayDownloadQueryParamChain(alipayClient, queryModel);
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    @Override
+    public String toString() {
+        return "DefaultPayChain{" +
+                "alipayClient=" + alipayClient +
+                '}';
+    }
 }

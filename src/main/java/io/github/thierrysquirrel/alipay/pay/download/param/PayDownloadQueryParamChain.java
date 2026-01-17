@@ -19,7 +19,6 @@ package io.github.thierrysquirrel.alipay.pay.download.param;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayDataDataserviceBillDownloadurlQueryModel;
 import io.github.thierrysquirrel.alipay.pay.download.PayDownloadQueryChain;
-import lombok.Data;
 
 /**
  * ClassName: PayDownloadQueryParamChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayDownloadQueryParamChain {
     private AlipayClient alipayClient;
     private AlipayDataDataserviceBillDownloadurlQueryModel alipayDataDataserviceBillDownloadurlQueryModel;
@@ -92,5 +90,29 @@ public class PayDownloadQueryParamChain {
     public PayDownloadQueryParamChain builderSmId(String smId) {
         alipayDataDataserviceBillDownloadurlQueryModel.setSmid(smId);
         return this;
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayDataDataserviceBillDownloadurlQueryModel getAlipayDataDataserviceBillDownloadurlQueryModel() {
+        return alipayDataDataserviceBillDownloadurlQueryModel;
+    }
+
+    public void setAlipayDataDataserviceBillDownloadurlQueryModel(AlipayDataDataserviceBillDownloadurlQueryModel alipayDataDataserviceBillDownloadurlQueryModel) {
+        this.alipayDataDataserviceBillDownloadurlQueryModel = alipayDataDataserviceBillDownloadurlQueryModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayDownloadQueryParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayDataDataserviceBillDownloadurlQueryModel=" + alipayDataDataserviceBillDownloadurlQueryModel +
+                '}';
     }
 }

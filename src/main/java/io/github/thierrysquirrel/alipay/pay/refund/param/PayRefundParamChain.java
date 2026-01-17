@@ -21,8 +21,6 @@ import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.alipay.api.domain.OpenApiRoyaltyDetailInfoPojo;
 import com.alipay.api.domain.RefundGoodsDetail;
 import io.github.thierrysquirrel.alipay.pay.refund.PayRefundChain;
-import lombok.Data;
-
 import java.util.List;
 
 /**
@@ -34,7 +32,6 @@ import java.util.List;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayRefundParamChain {
     private AlipayClient alipayClient;
     private AlipayTradeRefundModel alipayTradeRefundModel;
@@ -178,4 +175,27 @@ public class PayRefundParamChain {
         return this;
     }
 
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeRefundModel getAlipayTradeRefundModel() {
+        return alipayTradeRefundModel;
+    }
+
+    public void setAlipayTradeRefundModel(AlipayTradeRefundModel alipayTradeRefundModel) {
+        this.alipayTradeRefundModel = alipayTradeRefundModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayRefundParamChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeRefundModel=" + alipayTradeRefundModel +
+                '}';
+    }
 }

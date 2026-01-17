@@ -20,7 +20,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeCloseModel;
 import com.alipay.api.request.AlipayTradeCloseRequest;
-import lombok.Data;
 
 /**
  * ClassName: PayCloseChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PayCloseChain {
     private AlipayClient alipayClient;
     private AlipayTradeCloseModel alipayTradeCloseModel;
@@ -65,5 +63,29 @@ public class PayCloseChain {
      */
     public String close(AlipayTradeCloseRequest closeRequest) throws AlipayApiException {
         return alipayClient.execute(closeRequest).getBody();
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeCloseModel getAlipayTradeCloseModel() {
+        return alipayTradeCloseModel;
+    }
+
+    public void setAlipayTradeCloseModel(AlipayTradeCloseModel alipayTradeCloseModel) {
+        this.alipayTradeCloseModel = alipayTradeCloseModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PayCloseChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeCloseModel=" + alipayTradeCloseModel +
+                '}';
     }
 }

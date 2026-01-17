@@ -20,7 +20,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradePagePayModel;
 import com.alipay.api.request.AlipayTradePagePayRequest;
-import lombok.Data;
 
 /**
  * ClassName: PagePayChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class PagePayChain {
     private AlipayClient alipayClient;
     private AlipayTradePagePayModel alipayTradePagePayModel;
@@ -72,5 +70,29 @@ public class PagePayChain {
     public String pay(AlipayTradePagePayRequest pagePayRequest) throws AlipayApiException {
         pagePayRequest.setBizModel(alipayTradePagePayModel);
         return alipayClient.pageExecute(pagePayRequest).getBody();
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradePagePayModel getAlipayTradePagePayModel() {
+        return alipayTradePagePayModel;
+    }
+
+    public void setAlipayTradePagePayModel(AlipayTradePagePayModel alipayTradePagePayModel) {
+        this.alipayTradePagePayModel = alipayTradePagePayModel;
+    }
+
+    @Override
+    public String toString() {
+        return "PagePayChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradePagePayModel=" + alipayTradePagePayModel +
+                '}';
     }
 }

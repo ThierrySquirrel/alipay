@@ -20,7 +20,6 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeWapPayModel;
 import com.alipay.api.request.AlipayTradeWapPayRequest;
-import lombok.Data;
 
 /**
  * ClassName: WapPayChain
@@ -30,7 +29,6 @@ import lombok.Data;
  * @author ThierrySquirrel
  * @since JDK21
  */
-@Data
 public class WapPayChain {
     private AlipayClient alipayClient;
     private AlipayTradeWapPayModel alipayTradeWapPayModel;
@@ -72,5 +70,29 @@ public class WapPayChain {
     public String pay(AlipayTradeWapPayRequest payRequest) throws AlipayApiException {
         payRequest.setBizModel(alipayTradeWapPayModel);
         return alipayClient.pageExecute(payRequest).getBody();
+    }
+
+    public AlipayClient getAlipayClient() {
+        return alipayClient;
+    }
+
+    public void setAlipayClient(AlipayClient alipayClient) {
+        this.alipayClient = alipayClient;
+    }
+
+    public AlipayTradeWapPayModel getAlipayTradeWapPayModel() {
+        return alipayTradeWapPayModel;
+    }
+
+    public void setAlipayTradeWapPayModel(AlipayTradeWapPayModel alipayTradeWapPayModel) {
+        this.alipayTradeWapPayModel = alipayTradeWapPayModel;
+    }
+
+    @Override
+    public String toString() {
+        return "WapPayChain{" +
+                "alipayClient=" + alipayClient +
+                ", alipayTradeWapPayModel=" + alipayTradeWapPayModel +
+                '}';
     }
 }
