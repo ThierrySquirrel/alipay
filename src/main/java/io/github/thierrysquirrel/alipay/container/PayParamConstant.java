@@ -1,5 +1,5 @@
 /**
- * Copyright 2024/8/6 ThierrySquirrel
+ * Copyright 2026/6/1 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,10 +20,10 @@ package io.github.thierrysquirrel.alipay.container;
 /**
  * ClassName: PayParamConstant
  * Description:
- * Date:2024/8/6
+ * Date:2026/6/1
  *
  * @author ThierrySquirrel
- * @since JDK21
+ * @since JDK25
  */
 public enum PayParamConstant {
     /**

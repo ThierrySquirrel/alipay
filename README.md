@@ -1,12 +1,13 @@
 # alipay
 
-[AliPay Open Platform](https://open.alipay.com/platform/home.htm)  
+[AliPay Open Platform](https://open.alipay.com/platform/home.htm)
 
-AliPay Java SDK  
+AliPay Java SDK
 
-[中文](./README_zh_CN.md)  
+[中文](./README_zh_CN.md)
 
 Support Function：
+
 - [x] App Payment
 - [x] Mobile Website Payment
 - [x] Payment By Computer Website
@@ -15,9 +16,10 @@ Support Function：
 - [x] Transaction Refund
 - [x] Transaction Refund Query
 - [x] Query Bill Download Address
-- [x] Transaction Verification  
+- [x] Transaction Verification
 
 # App Payment：
+
 * [App payment product introduction](https://docs.open.alipay.com/204/105051/)    
   APP Payment Is Suitable For Businesses To Integrate AliPay Payment Function In App Applications.    
   Merchant APP Calls AliPay's SDK, SDK, And Then Calls The Payment Module in AliPay APP.    
@@ -27,142 +29,158 @@ Support Function：
   If The User Does Not Install AliPay APP,   
   The Merchant APP Will Adjust The AliPay Web Payment Cashier,    
   Users Log On To AliPay Account And Show The Payment Results After Payment.    
-  Currently supported mobile systems are IOS (Apple) and Android (Android).      
+  Currently supported mobile systems are IOS (Apple) and Android (Android).
 
-# Mobile Website Payment：  
+# Mobile Website Payment：
+
 * [Mobile Website Payment Product Introduction](https://docs.open.alipay.com/203)       
   It Is Suitable For Businesses To Integrate AliPay Payment Function In Mobile Web Page Application.     
   In The Web Application,     
-  Merchants Call The Web Page Payment Interface Provided By AliPay, And The Interface Will Adjust The Payment Module In AliPay Client,      
-  At This Point, It Will Jump From The Merchant Web Application To The AliPay Client And Start Payment: After Payment Is Completed,     
+  Merchants Call The Web Page Payment Interface Provided By AliPay, And The Interface Will Adjust The Payment Module In
+  AliPay Client,      
+  At This Point, It Will Jump From The Merchant Web Application To The AliPay Client And Start Payment: After Payment Is
+  Completed,     
   It Will Jump Back To The Application Of The Merchant Web Page,      
-  Finally, The Merchant Shows The Payment Result.      
+  Finally, The Merchant Shows The Payment Result.
 
-# Payment By Computer Website： 
+# Payment By Computer Website：
+
 * [Introduction To Payment Products Of Computer Website](https://docs.open.alipay.com/270)    
   Through The Payment Function Of The Computer Website,     
-  Users Will Automatically Jump To The AliPay PC Website Cashier To Complete Payment After Consuming The PC Website.     
+  Users Will Automatically Jump To The AliPay PC Website Cashier To Complete Payment After Consuming The PC
+  Website.     
   Trading Funds Directly Into The Merchant AliPay Account, Real-Time Arrival.      
   The User's Transaction Payment Is Received Immediately,     
   And The Transaction Order Can Be Refunded Within Three Months,      
-  Provide Refund, Settlement, Reconciliation And Other Supporting Services.       
+  Provide Refund, Settlement, Reconciliation And Other Supporting Services.
 
 # Transaction Query：
+
 * [Unified Single Line Transaction Inquiry](https://opendocs.alipay.com/open/82ea786a_alipay.trade.query?scene=23&pathHash=0745ecea)    
- The Interface Provides All AliPay Payment Orders Inquiries, Merchants Can Actively Query The Order Status Through This Interface,      
- And Complete The Next Business Logic.     
- Need To Call Query Interface: When The Merchant Background, Network,     
- Server And So On Are Abnormal,     
- The Merchant System Does Not Receive The Payment Notice Finally:       
- System Error Or Unknown Transaction Status Returned After Calling The Payment Interface:       
- Call alipay.trade.pay To Return The Status Of INPROCESS:        
- Before Calling alipay.trade.cancel, You Need To Confirm The Payment Status:       
+  The Interface Provides All AliPay Payment Orders Inquiries, Merchants Can Actively Query The Order Status Through This
+  Interface,      
+  And Complete The Next Business Logic.     
+  Need To Call Query Interface: When The Merchant Background, Network,     
+  Server And So On Are Abnormal,     
+  The Merchant System Does Not Receive The Payment Notice Finally:       
+  System Error Or Unknown Transaction Status Returned After Calling The Payment Interface:       
+  Call alipay.trade.pay To Return The Status Of INPROCESS:        
+  Before Calling alipay.trade.cancel, You Need To Confirm The Payment Status:
 
 # Transaction Closed：
+
 * [Unified Receipt Transaction Closing Interface](https://opendocs.alipay.com/open/ce0b4954_alipay.trade.close?scene=common&pathHash=7b0fdae1)  
   After The Transaction Is Created,   
   The User Fails To Pay Within A Certain Period Of Time,    
-  This Interface Can Be Called To Close The Unpaid Transactions Directly.    
+  This Interface Can Be Called To Close The Unpaid Transactions Directly.
 
 # Transaction Refund：
+
 * [Unified Receipt Transaction Refund Interface](https://opendocs.alipay.com/open/4b7cc5db_alipay.trade.refund?scene=common&pathHash=d98b006d)  
   When A Refund Is Required Due To The Buyer Or The Seller For A Period Of Time After The Transaction,    
   The Seller Can Return The Payment To The Buyer Through The Refund Interface,    
   AliPay Will Receive A Refund Request And Verify The Success,    
   Refund The Payment To The Buyer's Account According To The Refund Rules.     
-  No Refund Can Be Made For The Order Whose Transaction Exceeds The Agreed Time (The Refundable Time Set At The Time Of Signing)     
+  No Refund Can Be Made For The Order Whose Transaction Exceeds The Agreed Time (The Refundable Time Set At The Time Of
+  Signing)     
   AliPay Refund Support For Single Transaction With Multiple Refunds,    
-  For Multiple Refunds, You Need To Submit The Merchant Order Number Of The Original Payment Order And Set A Different Refund Number.    
+  For Multiple Refunds, You Need To Submit The Merchant Order Number Of The Original Payment Order And Set A Different
+  Refund Number.    
   If A Refund Fails To Be Submitted Again,     
   The original Refund Number Shall Be Used.      
-  The Total Refund Amount Cannot Exceed The User's Actual Payment Amount     
-  
+  The Total Refund Amount Cannot Exceed The User's Actual Payment Amount
+
 # Transaction Refund Query：
+
 * [Unified Receipt Transaction Refund Query](https://opendocs.alipay.com/open/7be83133_alipay.trade.fastpay.refund.query?scene=common&pathHash=7cf4fed5)  
-  The Merchant Can Use This Interface To Query Whether The Refund Request Submitted By Itself Through alipay.trade.refund     
+  The Merchant Can Use This Interface To Query Whether The Refund Request Submitted By Itself Through
+  alipay.trade.refund     
   or alipay.trade.refund.apply Is Executed Successfully.     
-  The Return Code 10000 Of This Interface Only Represents The Success Of This Query Operation, Not The Success Of Refund.      
+  The Return Code 10000 Of This Interface Only Represents The Success Of This Query Operation, Not The Success Of
+  Refund.      
   If The Interface Returns Query Data,    
   If The refund_status Is Empty Or REFUND_SUCCESS, The Refund Is successful,    
   If It Is Not Found, It Means That The Refund Is Successful.     
   You Can Call The Refund Interface To Try Again.      
-  Please Make Sure That The Refund Request Number Is The Same When You Try Again.       
-  
+  Please Make Sure That The Refund Request Number Is The Same When You Try Again.
+
 # Query Bill Download Address：
+
 * [Query The Download Address Of Statement](https://opendocs.alipay.com/open/3c9f1bcf_alipay.data.dataservice.bill.downloadurl.query?scene=common&pathHash=97357e8b)  
   In Order To Facilitate The Merchant's Quick Account Checking,       
-  The Merchant Is Supported To Obtain The Offline Bill Download Address Of The Merchant Through This Interface         
-  
+  The Merchant Is Supported To Obtain The Offline Bill Download Address Of The Merchant Through This Interface
+
 # Transaction Verification：
+
 * [Difference Between RSA and RSA2 Signature Algorithms](https://docs.open.alipay.com/291/106115/)  
   The New Application Only Supports The RSA2 Signature Method. Currently,   
   The Application That Has Used The RSA Signature Method Can Still Call The Interface Normally,   
-  See For Details.[Open Platform Interface Signature Upgrade Announcement.](https://docs.open.alipay.com/10505)   
+  See For Details.[Open Platform Interface Signature Upgrade Announcement.](https://docs.open.alipay.com/10505)
 
-## Quick Start  
+## Quick Start
 
 ```xml
 <!--Adding dependencies to pom. XML-->
-        <dependency>
-            <groupId>io.github.thierrysquirrel</groupId>
-            <artifactId>alipay</artifactId>
-            <version>1.6.0.0-RELEASE</version>
-        </dependency>
+<dependency>
+    <groupId>io.github.thierrysquirrel</groupId>
+    <artifactId>alipay</artifactId>
+    <version>1.6.0.1-RELEASE</version>
+</dependency>
 ```       
 
-# App Payment：  
+# App Payment：
 
 ```java
 public class AppPay {
-  public String appPay() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId", "privateKey", "publicKey")
-            .appPay("outTradeNo", "totalAmount", "subject")
-            .builder()
-            .pay("notifyUrl");
-  }
+    public String appPay() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .appPay("outTradeNo", "totalAmount", "subject")
+                .builder()
+                .pay("notifyUrl");
+    }
 }
 ```  
 
-# Mobile Website Payment：  
+# Mobile Website Payment：
 
 ```java
 public class WapPay {
-  public String wapPay() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId", "privateKey", "publicKey")
-            .wapPay("outTradeNo", "totalAmount", "subject")
-            .builder()
-            .pay("returnUrl", "notifyUrl");
-  }
+    public String wapPay() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .wapPay("outTradeNo", "totalAmount", "subject")
+                .builder()
+                .pay("returnUrl", "notifyUrl");
+    }
 }
 ```  
 
-# Payment By Computer Website：  
+# Payment By Computer Website：
 
 ```java
 public class PagePay {
-  public String pagePay() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId","privateKey","publicKey")
-            .pagePay("outTradeNo","totalAmount","subject")
-            .builder()
-            .pay("returnUrl","notifyUrl");
-  }
+    public String pagePay() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .pagePay("outTradeNo", "totalAmount", "subject")
+                .builder()
+                .pay("returnUrl", "notifyUrl");
+    }
 }
 ```
 
-# Transaction Query：  
+# Transaction Query：
 
 ```java
 public class PayQuery {
-  public String payQuery() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId", "privateKey", "publicKey")
-            .queryPay("outTradeNo", "tradeNo")
-            .builder()
-            .query();
-  }
+    public String payQuery() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .queryPay("outTradeNo", "tradeNo")
+                .builder()
+                .query();
+    }
 }
 ```
 
@@ -170,67 +188,67 @@ public class PayQuery {
 
 ```java
 public class PayClose {
-  public String payClose() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId", "privateKey", "publicKey")
-            .closePay("tradeNo", "outTradeNo")
-            .builder()
-            .close();
-  }
+    public String payClose() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .closePay("tradeNo", "outTradeNo")
+                .builder()
+                .close();
+    }
 }
 ```
 
-# Transaction Refund：  
+# Transaction Refund：
 
 ```java
 public class PayRefund {
-  public String payRefund() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId", "privateKey", "publicKey")
-            .refundPay("refundAmount", "outTradeNo", "tradeNo")
-            .builder()
-            .refund();
-  }
+    public String payRefund() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .refundPay("refundAmount", "outTradeNo", "tradeNo")
+                .builder()
+                .refund();
+    }
 }
 ```
 
-# Transaction Refund Query：  
+# Transaction Refund Query：
 
 ```java
 public class PayRefundQuery {
-  public String payRefundQuery() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId", "privateKey", "publicKey")
-            .refundQueryPay("outRequestNo", "tradeNo", "outTradeNo")
-            .builder()
-            .refundQuery();
-  }
+    public String payRefundQuery() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .refundQueryPay("outRequestNo", "tradeNo", "outTradeNo")
+                .builder()
+                .refundQuery();
+    }
 }
 ```
 
-# Query Bill Download Address：  
+# Query Bill Download Address：
 
 ```java
 public class PayDownloadQuery {
-  public String payDownloadQuery() throws AlipayApiException {
-    return PayRootChainFactory
-            .createdPayChain("appId","privateKey","publicKey")
-            .downloadQueryPay("billType","billDate")
-            .builder()
-            .downloadQuery();
-  }
+    public String payDownloadQuery() throws AlipayApiException {
+        return PayRootChainFactory
+                .createdPayChain("appId", "privateKey", "publicKey")
+                .downloadQueryPay("billType", "billDate")
+                .builder()
+                .downloadQuery();
+    }
 }
 ```
 
-# Transaction Verification：  
+# Transaction Verification：
 
 ```java
 public class PayCheck {
-	public boolean payCheck(HttpServletRequest request){
-		Map<String, String[]> parameterMap=request.getParameterMap();
-		Map<String, String> reload = PayCheckFactory.reload(parameterMap);
-		return PayCheckFactory.check(reload);
-	}
+    public boolean payCheck(HttpServletRequest request) {
+        Map<String, String[]> parameterMap = request.getParameterMap();
+        Map<String, String> reload = PayCheckFactory.reload(parameterMap);
+        return PayCheckFactory.check(reload);
+    }
 }
 ```
 

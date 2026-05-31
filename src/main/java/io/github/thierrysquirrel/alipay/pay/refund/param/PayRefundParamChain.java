@@ -1,5 +1,5 @@
 /**
- * Copyright 2024/8/6 ThierrySquirrel
+ * Copyright 2026/6/1 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,16 +21,17 @@ import com.alipay.api.domain.AlipayTradeRefundModel;
 import com.alipay.api.domain.OpenApiRoyaltyDetailInfoPojo;
 import com.alipay.api.domain.RefundGoodsDetail;
 import io.github.thierrysquirrel.alipay.pay.refund.PayRefundChain;
+
 import java.util.List;
 
 /**
  * ClassName: PayRefundParamChain
  * Description: Document Address <a href="https://opendocs.alipay.com/open/6c0cdd7d_alipay.trade.refund?scene=common&pathHash=4081e89c">Document Address</a>
  * 文档地址: <a href="https://opendocs.alipay.com/open/6c0cdd7d_alipay.trade.refund?scene=common&pathHash=4081e89c">文档地址</a>
- * Date:2024/8/6
+ * Date:2026/6/1
  *
  * @author ThierrySquirrel
- * @since JDK21
+ * @since JDK25
  */
 public class PayRefundParamChain {
     private AlipayClient alipayClient;

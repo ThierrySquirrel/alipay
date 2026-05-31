@@ -1,5 +1,5 @@
 /**
- * Copyright 2024/8/6 ThierrySquirrel
+ * Copyright 2026/6/1 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,14 @@ package io.github.thierrysquirrel.alipay.pay.refund.query.param;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.domain.AlipayTradeFastpayRefundQueryModel;
 import io.github.thierrysquirrel.alipay.pay.refund.query.PayRefundQueryChain;
+
 import java.util.List;
 
 /**
  * ClassName: PayRefundQueryParamChain
  * Description: Document Address <a href="https://opendocs.alipay.com/open/8c776df6_alipay.trade.fastpay.refund.query?scene=common&pathHash=fb6e1894">Document Address</a>
  * 文档地址 <a href="https://opendocs.alipay.com/open/8c776df6_alipay.trade.fastpay.refund.query?scene=common&pathHash=fb6e1894">文档地址</a>
- * Date:2024/8/6
+ * Date:2026/6/1
  *
  * @author ThierrySquirrel
  * @since JDK21

@@ -1,5 +1,5 @@
 /**
- * Copyright 2024/8/6 ThierrySquirrel
+ * Copyright 2026/6/1 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,10 +19,10 @@ package io.github.thierrysquirrel.alipay.container;
 /**
  * ClassName: PayCheckFactoryContainer
  * Description:
- * Date:2024/8/6
+ * Date:2026/6/1
  *
  * @author ThierrySquirrel
- * @since JDK21
+ * @since JDK25
  */
 public final class PayCheckFactoryContainer {
     /**
@@ -30,7 +30,7 @@ public final class PayCheckFactoryContainer {
      * <p>
      * 默认Map大小
      */
-    public static final int MAP_DEFAULT_SIZE = 16;
+    public static final int MAP_DEFAULT_SIZE = Runtime.getRuntime().availableProcessors() * 2;
     /**
      * Reload Join
      * <p>

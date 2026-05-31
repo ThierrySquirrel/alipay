@@ -1,5 +1,5 @@
 /**
- * Copyright 2024/8/6 ThierrySquirrel
+ * Copyright 2026/6/1 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,13 +26,13 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * ClassName: PayCheckFactory
- * Description: Document Address <a href="https://opensupport.alipay.com/support/FAQ/794a7ccd-0ba9-4d9d-83a3-f43f3bc82ba7">Document Address</a>
- * 文档地址: <a href="https://opensupport.alipay.com/support/FAQ/794a7ccd-0ba9-4d9d-83a3-f43f3bc82ba7">文档地址</a>
+ * Description: Document Address <a href="https://opendocs.alipay.com/open/270/105902?pathHash=d5cd617e">Document Address</a>
+ * 文档地址: <a href="https://opendocs.alipay.com/open/270/105902?pathHash=d5cd617e">文档地址</a>
  * <p>
- * Date:2024/8/6
+ * Date:2026/6/1
  *
  * @author ThierrySquirrel
- * @since JDK21
+ * @since JDK25
  */
 public class PayCheckFactory {
     private PayCheckFactory() {

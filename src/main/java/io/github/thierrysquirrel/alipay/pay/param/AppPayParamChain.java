@@ -1,5 +1,5 @@
 /**
- * Copyright 2024/8/6 ThierrySquirrel
+ * Copyright 2026/6/1 ThierrySquirrel
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ import com.alipay.api.domain.ExtUserInfo;
 import com.alipay.api.domain.ExtendParams;
 import com.alipay.api.domain.GoodsDetail;
 import io.github.thierrysquirrel.alipay.pay.AppPayChain;
+
 import java.util.List;
 
 /**
@@ -29,10 +30,10 @@ import java.util.List;
  * Description: <a href="https://opendocs.alipay.com/open/cd12c885_alipay.trade.app.pay?scene=20&pathHash=ab686e33">Document Address</a>
  * 文档地址:<a href="https://opendocs.alipay.com/open/cd12c885_alipay.trade.app.pay?scene=20&pathHash=ab686e33">文档地址</a>
  * <p>
- * Date:2024/8/6
+ * Date:2026/6/1
  *
  * @author ThierrySquirrel
- * @since JDK21
+ * @since JDK25
  */
 public class AppPayParamChain {
     private AlipayClient alipayClient;
